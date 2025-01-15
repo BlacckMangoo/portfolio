@@ -35,7 +35,7 @@
 }
 
 .nav-button {
-  margin-inline: 6rem;
+  margin-inline: 4rem;
   margin-top: 2rem;
   background-color: #000000;
   color: #00ff00;
@@ -47,7 +47,9 @@
   cursor: pointer;
   text-shadow: 0 0 3px #00ff00;
   box-shadow: 0 0 20px #2bff0097;
+  height: 2rem;
   transition: all 0.3s ease;
+
 }
 
 .nav-button:hover {
