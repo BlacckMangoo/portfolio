@@ -11,6 +11,11 @@ const BlogCard = ({ position, title, rotation, onClick}) => {
   const meshRef = useRef();
   const [hovered, setHovered] = useState(false);
 
+  const handlePointerMove = (e) => {
+    const isHovered = meshRef.current?.geometry?.boundingBox?.containsPoint(e.point);
+    setHovered(isHovered);
+  };
+
   // Frame-based animation for the card
   useFrame((state) => {
     meshRef.current.rotation.x = Math.sin(state.clock.elapsedTime * 0.4) * 0.3;
@@ -30,6 +35,7 @@ const BlogCard = ({ position, title, rotation, onClick}) => {
         rotation={rotation}
         scale={hovered ? 1.1 : 1}
         onClick={onClick}
+        onpointer
         onPointerOver={() => setHovered(true) }
         onPointerOut={() => setHovered(false)}
       >
@@ -38,7 +44,7 @@ const BlogCard = ({ position, title, rotation, onClick}) => {
           <edgesGeometry attach="geometry" args={[new THREE.BoxGeometry(6, 3, 1)]} />
           <lineBasicMaterial
             attach="material"
-            color={hovered ? "#00ff88" : "#00ff00"}
+            color={hovered ? "#00ff11" : "#00ff00"}
             linewidth={8}
             linecap="round"
             linejoin="round"

@@ -21,7 +21,7 @@ const MatrixBackground = () => {
   
       const chars = 'ABCDEFGHIJKLMNOPQRS同学们好TU的一是了我不人有在他VXYZABCDEFGHIJKLMNOPQRSTUVXYZ0123456789@#$%^&*()अआइईउऊऋऍएऐऑओऔअंअःकखगघचछजझटठडढतथदधनपफबभमयरलवशषसहक्षत्रज्ञऩंःऽ';
       const charArray = chars.split('');
-      const fontSize = 29;
+      const fontSize = 35;
       const columns = canvas.width / fontSize;
       
       const drops = [];
