@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-
+import console from '/src/console.png';
 const Console = () => {
   const { ref, inView } = useInView({
     triggerOnce: true, // Trigger animation only once
@@ -10,7 +10,7 @@ const Console = () => {
 
   return (
     <>
-    <motion.img   ref={ref} src='./public/Images/console.png'  className='console' initial={{  opacity: 0 ,scale: 0.6} }
+    <motion.img   ref={ref} src= {console} className='console' initial={{  opacity: 0 ,scale: 0.6} }
     animate={ inView? { opacity: 1,scale:0.8 } : {}}   
     transition={{ duration: 1 }} 
      />

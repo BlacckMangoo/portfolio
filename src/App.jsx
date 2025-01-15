@@ -10,7 +10,7 @@ import Socials from './GithubIcon.jsx'
 import MatrixBackground from './MatrixBackground.jsx';
 import BlogCardsList  from './Blog.jsx';
 
-
+import pfp from '/src/pfp_image.png'
 const App = () => {
    const { ref, inView } = useInView({
       triggerOnce: true, // Trigger animation only once
@@ -42,7 +42,7 @@ const App = () => {
         
         {/* Left: 3D Mesh */}
         <div className="mesh-container">
-         <motion.img src="/public/Images/pfp_image.png" initial={{ opacity: 0, scale: 0.3 }}
+         <motion.img src= {pfp} initial={{ opacity: 0, scale: 0.3 }}
     animate={{ opacity: 1, scale: 0.85 }}
     transition={{ duration: 0.5 }}
            style={{
