@@ -42,7 +42,7 @@ const App = () => {
         
         {/* Left: 3D Mesh */}
         <div className="mesh-container">
-         <motion.img src="./public/images/pfp_image.png" initial={{ opacity: 0, scale: 0.3 }}
+         <motion.img src="/public/Images/pfp_image.png" initial={{ opacity: 0, scale: 0.3 }}
     animate={{ opacity: 1, scale: 0.85 }}
     transition={{ duration: 0.5 }}
            style={{
