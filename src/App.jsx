@@ -4,7 +4,7 @@ import {  motion } from "framer-motion";
 import './App.css';
 import { useInView } from 'react-intersection-observer';
 
-import Console from './ConsoleAboutMe.Jsx';
+import Console from './Console.jsx';
 import Navabar from './Navbar.jsx'
 import Socials from './GithubIcon.jsx'
 import MatrixBackground from './MatrixBackground.jsx';
