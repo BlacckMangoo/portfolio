@@ -10,7 +10,6 @@ const Console = () => {
 
   return (
     <>
- 
 
     <motion.img   ref={ref} src="src/console.png"   className='console' initial={{  opacity: 0 ,scale: 0.6} }
         
