@@ -6,6 +6,7 @@ import { BlendFunction } from "postprocessing";
 import { motion } from "framer-motion";
 import * as THREE from "three";
 
+
 // BlogCard component for individual cards
 const BlogCard = ({ position, title, rotation, onClick}) => {
   const meshRef = useRef();
@@ -99,7 +100,7 @@ const BlogCardsList = () => {
 
   return (
     <div className="w-screen h-screen">
-      <Canvas style={{ width: "150rem", height: "100rem" }}>
+      <Canvas style={{ width: "150rem", height: "50rem" }}>
         <PerspectiveCamera makeDefault position={[0, 0, 15]} />
         <ambientLight intensity={0.5} />
 

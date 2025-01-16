@@ -9,6 +9,10 @@ import Navabar from './Navbar.jsx'
 import Socials from './GithubIcon.jsx'
 import MatrixBackground from './MatrixBackground.jsx';
 import BlogCardsList  from './Blog.jsx';
+import Projects from './myProjects.jsx';
+import ProjectsTwo from './MyProjectsTwo.jsx';
+
+
 
 import pfp from '/src/pfp_image.png'
 const App = () => {
@@ -67,13 +71,25 @@ const App = () => {
        <p><strong>A</strong>rt | <strong>G</strong>amedev | <strong>P</strong>hilosophy</p>
        </motion.div>
        <Console></Console>
-       <motion.h1  ref={ref}  initial={{  opacity: 0 ,scale: 0} }
-        
+
+       <motion.h1    initial={{  opacity: 0 ,scale: 0} }
         animate={ inView? { opacity: 1,scale:1 } : {}}
-       
         transition={{ duration: 1 }}><strong> MY BLOGS</strong></motion.h1>
-       <BlogCardsList></BlogCardsList>
+<motion.div ref={ref}  initial={{  opacity: 0 ,scale: 0} }
+        animate={ inView? { opacity: 1,scale:1 } : {}}> 
+        <BlogCardsList></BlogCardsList>
+        </motion.div>
        
+
+       <motion.h1   initial={{  opacity: 0 ,scale: 0} }
+        animate={ inView? { opacity: 1,scale:1 } : {}}
+        transition={{ duration: 1 }}><strong> MY PROJECTS</strong></motion.h1>
+        <Projects> </Projects>
+        <ProjectsTwo></ProjectsTwo>
+        <motion.h1    initial={{  opacity: 0 ,scale: 0} }
+        animate={ inView? { opacity: 1,scale:1 } : {}}
+        transition={{ duration: 1 }}><strong> MY ARTWORKS</strong></motion.h1>
+        
         </div>
       </div>  
     </div>
