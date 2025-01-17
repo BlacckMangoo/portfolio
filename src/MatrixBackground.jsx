@@ -19,7 +19,7 @@ const MatrixBackground = () => {
       window.addEventListener('resize', resize);
       resize();
   
-      const chars = 'ABCDEFGHIJKLMNOPQRS同学们好TU的一是了我不人有在他VXYZABCDEFGHIJKLMNOPQRSTUVXYZ0123456789@#$%^&*()अआइईउऊऋऍएऐऑओऔअंअःकखगघचछजझटठडढतथदधनपफबभमयरलवशषसहक्षत्रज्ञऩंःऽ';
+      const chars = 'ABC⍾⍙⟒⍀⏁⊬⎍⟟⍜⏃⌇⎅⎎☌⊑⟊☍⌰⋉⌖☊⎐⏚⋏⋔D同学们好TU的一∑_{n=1}^{∞}(√(n²+π²)/e^(αn))∫₀^∞(sin(θ²)/(x²+1))dx+∇²∇²∇²∇²∇²∇²∇²∇²∇²∇²λ∇²φ(x)=σ(ω)是了我不人有在他VVXYZ0123456789@#$%^&*()अआइईउऊऋऍएऐऑओऔअंअःकखगघचछजझटठडढतथदधनपफबभमयरलवशषसहक्षत्रज्ञऩंःऽ';
       const charArray = chars.split('');
       const fontSize = 35;
       const columns = canvas.width / fontSize;

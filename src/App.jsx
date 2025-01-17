@@ -15,6 +15,7 @@ import ProjectsTwo from './MyProjectsTwo.jsx';
 
 
 import pfp from '/src/pfp_image.png'
+import ArtGallery from './Gallery.jsx';
 const App = () => {
    const { ref, inView } = useInView({
       triggerOnce: true, // Trigger animation only once
@@ -48,7 +49,7 @@ const App = () => {
         <div className="mesh-container">
          <motion.img src= {pfp} initial={{ opacity: 0, scale: 0.3 }}
     animate={{ opacity: 1, scale: 0.85 }}
-    transition={{ duration: 0.5 }}
+    transition={{ duration: 0.5 }} whileHover={{scale:1}}
            style={{
     width: '450px', // Set desired width
     height: 'auto',
@@ -68,7 +69,7 @@ const App = () => {
         animate={{ x: "0vw" }} 
         transition={{ type: "spring", stiffness: 100, damping: 15 }}>
       <p> <small>I Love learning and making new things</small></p> <br />
-       <p><strong>A</strong>rt | <strong>G</strong>amedev | <strong>P</strong>hilosophy</p>
+       <p><strong>A</strong>rt | <strong>G</strong>amedev | <strong>P</strong>hilosophy | <strong>C</strong>oding</p>
        </motion.div>
        <Console></Console>
 
@@ -86,9 +87,12 @@ const App = () => {
         transition={{ duration: 1 }}><strong> MY PROJECTS</strong></motion.h1>
         <Projects> </Projects>
         <ProjectsTwo></ProjectsTwo>
-        <motion.h1    initial={{  opacity: 0 ,scale: 0} }
+        
+        <motion.h1    initial={{  opacity: 1 ,scale: 1} }
         animate={ inView? { opacity: 1,scale:1 } : {}}
-        transition={{ duration: 1 }}><strong> MY ARTWORKS</strong></motion.h1>
+        transition={{ duration: 1 }} style={{marginBottom:'3%'}}><strong> MY ARTWORKS</strong></motion.h1>
+
+        <ArtGallery></ArtGallery>
         
         </div>
       </div>  

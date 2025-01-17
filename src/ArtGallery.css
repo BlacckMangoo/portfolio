@@ -1,0 +1,35 @@
+.art-gallery {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    justify-content: center;
+    padding: 20px;
+    backdrop-filter: blur(4px);
+    background: rgba(0, 255, 255, 0.001);
+    overflow-y: scroll; /* Enables vertical scrolling */
+    height: 100vh; /* Full-page height for scrolling */
+  }
+  
+  .image-container {
+    width: calc(50% - 16px); /* Ensures two images per row with gap */
+    max-width: 1000px; /* Optional: limit max width of images */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow for effect */
+    border-radius: 8px; /* Rounded corners */
+    
+  }
+  
+  .art-gallery::-webkit-scrollbar {
+    display: none; /* Hides scrollbar */
+  }
+  
+  .art-image {
+    width: 100%;
+    height: auto; /* Maintain aspect ratio */
+    border-radius: 8px; /* Match container border radius */
+    object-fit: cover;
+  }
+  
