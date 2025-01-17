@@ -2,7 +2,7 @@ import React from "react";
 import "./ArtGallery.css"; // CSS file for styling
 import {  motion } from "framer-motion";
 // Import images
-import IMG_0599 from './artworks/IMG_0599.jpg';
+import meditation from './artworks/Screenshot 2025-01-17 020237.png';
 import Screenshot_2024_06_05_190003 from './artworks/Screenshot 2024-06-05 190003.png';
 
 import Screenshot_2024_07_05_183359 from './artworks/Screenshot 2024-07-05 183359.png';
@@ -26,7 +26,7 @@ const images = [
   
 
   Screenshot_2024_07_05_183359,
-  Screenshot_2024_07_05_184055,
+  Screenshot_2024_11_03_013410,
   Screenshot_2024_12_31_114428,
   Screenshot_2024_08_12_231651,
  
@@ -44,8 +44,10 @@ const images = [
 
   Screenshot_2024_12_29_233014,
   Screenshot_2024_12_29_233402,
-  Screenshot_2024_11_03_013410,
+
   Screenshot_2024_06_05_190003,
+  Screenshot_2024_07_05_184055,
+  meditation
  
 ];
 
