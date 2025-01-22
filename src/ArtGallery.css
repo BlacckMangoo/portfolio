@@ -5,7 +5,9 @@
     justify-content: center;
     padding: 20px;
     backdrop-filter: blur(4px);
-    background: rgba(0, 255, 255, 0.001);
+    background: rgba(249, 249, 249, 0.001);
+   border: 3px;
+   border-color: azure;
     overflow-y: scroll; /* Enables vertical scrolling */
     height: 100vh; /* Full-page height for scrolling */
   }
@@ -14,11 +16,12 @@
     width: calc(50% - 16px); /* Ensures two images per row with gap */
     max-width: 1000px; /* Optional: limit max width of images */
     display: flex;
+  
     justify-content: center;
     align-items: center;
     margin: 5px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow for effect */
-    border-radius: 8px; /* Rounded corners */
+    border-radius: 6px; /* Rounded corners */
     
   }
   

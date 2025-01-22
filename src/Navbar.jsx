@@ -2,6 +2,7 @@
 import { motion } from "framer-motion";
 import React from "react";
 import './App.css';
+import Console from "./Console";
 
 
 export default function Navabar()
@@ -45,8 +46,7 @@ return(
       initial={{ opacity: 0, y:-50 ,scale: 1.2 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.2 }}
-      whileHover={{ scale: 1.6}}
-      
+      whileHover={{ scale: 1.6} }
       className="nav-button"
    >
      Art Works

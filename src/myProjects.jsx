@@ -21,13 +21,12 @@ const Projects = () => {
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
-        height: "100vh",
+        height: "80vh",
         padding: " 5rem",
         boxSizing: "border-box",
         margin:'0'
       }}
     >
-      {/* Explanation Text */}
       <div style={{ flex: 1, textAlign: "center", paddingTop: "20px" ,maxWidth:'40rem'}}>
         <h1>Accord</h1>
         <p style={{ fontSize: "18px", lineHeight: "1.6", maxWidth:'40rem' }}>{explanationText}</p>
