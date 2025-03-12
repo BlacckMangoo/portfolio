@@ -47,33 +47,27 @@ const App = () => {
         
         {/* Left: 3D Mesh */}
         <div className="mesh-container">
-         <motion.img src= {pfp} initial={{ opacity: 0, scale: 0.3 }}
-    animate={{ opacity: 1, scale: 0.85 }}
-    transition={{ duration: 0.5 }} whileHover={{scale:1}}
-           style={{
-    width: '450px', // Set desired width
-    height: 'auto',
-    
-    boxShadow: '2px 2px 50px rgb(81, 255, 0,0.4)' // Maintains aspect ratio
-  }}  />
+         
+ 
         </div>
 
         {/* Right: Text Content */}
         <div className="text-container">
-          <div className='text-content center'>
-          <TypingEffect text="   My Name is"></TypingEffect>
-          
+          <div className='text-content'>
+
+          <h1> Hey, I am </h1> <br />
           <motion.h1  initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 2 }} > <strong>Satvik Gupta.</strong></motion.h1>
-      <motion.div className='taglines'initial={{ x: "50vw" }} 
+      <motion.div className='taglines'initial={{ x: "vw" }} 
         animate={{ x: "0vw" }} 
         transition={{ type: "spring", stiffness: 100, damping: 15 }}>
       <p> <small>I Love learning and building stuff</small></p> <br />
        <p><strong>A</strong>rt | <strong>G</strong>amedev | <strong>P</strong>hilosophy | <strong>C</strong>oding</p>
        </motion.div>
+
        </div>
-       <Console></Console>
+   
 
        <motion.h1 id="blog-section" initial={{  opacity: 0 ,scale: 0} }
         animate={ inView? { opacity: 1,scale:1 } : {}}

@@ -26,8 +26,14 @@ const TypingEffect = ({ text = "" }) => {
     <motion.h1
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      transition={{ duration: 2 }}
-      style={{ fontSize: "2rem", fontWeight: "bold" }}
+      transition={{ duration: 1 }}
+      style={{ 
+        fontSize: "clamp(1.5rem, 4vw, 2.2rem)",
+        fontWeight: "bold",
+        margin: "0 0 0.5rem 0",
+        textAlign: "center",
+        width: "100%"
+      }}
     >
       {displayedText}
       <motion.span

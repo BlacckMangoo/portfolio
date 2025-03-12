@@ -21,17 +21,7 @@ body {
   width: 100%;
 }
 
-/* Console image */
-.console {
-  width: 100%;
-  max-width: 120vw;
-  height: auto;
-  margin: 5rem auto;
-  display: block;
-  z-index: 0;
-  padding: 5rem;
-  position: relative;
-}
+
 
 /* Full App Container */
 .app-container {
@@ -90,7 +80,7 @@ body {
   width: 100%;
   position: relative;
   z-index: 2;
-  max-width: 1600px;
+
   margin: 0 auto;
 }
 
@@ -116,7 +106,7 @@ body {
 /* Profile Image Container */
 .mesh-container {
   width: 100%;
-  max-width: 350px;
+
   display: flex;
   justify-content: center;
   align-items: center;
@@ -133,7 +123,7 @@ body {
 
 /* Text Container */
 .text-container {
-  width: 60%;
+  width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -145,24 +135,23 @@ body {
 
 .text-content {
   width: 100%;
-  max-width: 1920px;
+
   margin: 0 auto;
   justify-content: center;
-  padding: 4rem;
+  padding-top: rem;
 }
 
 .text-container h1 {
   font-size: clamp(4rem, 7vw, 2.5rem);
   margin: 0.5rem 0;
   width: 100%;
-  align-self: center;
-  justify-content: center;
+ 
 }
 
 .text-container h1 strong {
   color: var(--primary-color);
   font: 4rem ;
-  justify-content: center;
+
 }
 
 p strong {
@@ -171,12 +160,9 @@ p strong {
 
 .taglines {
   width: 100%;
-  right: 0;
-  padding: 0.5rem;
+
   font-size: clamp(0.8rem, 3vw, 2.2rem);
- justify-content: center;
-  text-align: center;
-  align-content: center;
+
 }
 
 /* Matrix Background */
@@ -195,6 +181,7 @@ p strong {
 #blog-section,
 #projects-section,
 #artworks-section {
+  padding: 8rem;
   scroll-margin-top: 80px;
   width: 100%;
   text-align: center;
@@ -204,6 +191,7 @@ p strong {
 
 /* Blog Section */
 .blog-section {
+  
   width: 100%;
   max-width: fit-content;
   margin: 0 auto;
@@ -211,6 +199,7 @@ p strong {
 
 .blog-cards-container
 {
+  
   display: flex;
   flex-direction: column;
   gap: 2rem;
@@ -448,6 +437,7 @@ p strong {
   
   .console {
     max-width: 70vw;
+    min-width: 70vh;
   }
   
   /* Social icons */
@@ -464,6 +454,14 @@ p strong {
 
   .navbar {
     justify-content: center;
+    padding: 0.3rem;
+    flex-wrap: wrap;
+  }
+  
+  .nav-button {
+    margin: 0.3rem;
+    padding: 0.4rem 0.7rem;
+    font-size: 0.7rem;
   }
   
   .text-container h1 {
@@ -476,8 +474,12 @@ p strong {
   
   /* Reduce size of social icons on small screens */
   .social-icons-container {
-    top: 5px !important;
-    right: 5px !important;
+    top: auto !important;
+    bottom: 10px !important;
+    left: 10px !important;
+    right: auto !important;
+    padding: 5px !important;
+    z-index: 1000 !important;
   }
   
   .social-icons-container svg {
@@ -511,6 +513,111 @@ p strong {
   
   .project-video video {
     max-height: none;
+  }
+  
+  .console {
+    max-width: 95%;
+    min-width: 250px;
+    margin: 1rem auto;
+    padding: 0;
+  }
+  
+  .console-section {
+    min-height: 180px;
+  }
+}
+
+/* Ensure no overlap between navbar and social icons on very small screens */
+@media (max-width: 360px) {
+  .nav-button {
+    margin: 0.2rem;
+    padding: 0.3rem 0.5rem;
+    font-size: 0.65rem;
+  }
+}
+
+/* Mobile navbar and social icon fixes */
+@media (max-width: 576px) {
+  /* Navbar adjustments */
+  .navbar {
+    justify-content: center;
+    padding: 0.3rem;
+    flex-wrap: wrap;
+  }
+  
+  .nav-button {
+    margin: 0.3rem;
+    padding: 0.4rem 0.7rem;
+    font-size: 0.7rem;
+  }
+
+  /* Social icons positioning */
+  .social-icons-container {
+    position: fixed !important;
+    top: auto !important;
+    bottom: 10px !important;
+    left: 10px !important;
+    right: auto !important;
+    padding: 5px !important;
+    z-index: 1000 !important;
+  }
+  
+  .social-icons-container svg {
+    width: 24px;
+    height: 24px;
+  }
+  
+  /* Adjust back-to-top to not overlap with social icons */
+  .back-to-top {
+    width: 35px;
+    height: 35px;
+    bottom: 15px;
+    right: 15px;
+  }
+}
+
+/* Console image minimum size */
+.console {
+  width: 100%;
+  max-width: 80vw;
+  height: auto;
+  margin: 2rem auto;
+  display: block;
+  z-index: 0;
+  position: relative;
+  min-width: 280px;
+  min-height: 180px;
+}
+
+/* Console section to ensure proper sizing */
+.console-section {
+  width: 100%;
+  margin: 0 auto 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 220px;
+}
+
+@media (max-width: 576px) {
+  .console {
+    max-width: 95%;
+    min-width: 250px;
+    margin: 1rem auto;
+    padding: 0;
+  }
+  
+  .console-section {
+    min-height: 180px;
+  }
+}
+
+/* Ensure no overlap between navbar and social icons on very small screens */
+@media (max-width: 360px) {
+  .nav-button {
+    margin: 0.2rem;
+    padding: 0.3rem 0.5rem;
+    font-size: 0.65rem;
   }
 }
 
