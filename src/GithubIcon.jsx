@@ -64,7 +64,7 @@ const Socials = () => {
         top: "20px",
         right: "0", // Position the navbar at the right of the screen
         padding: "15px",
-        zIndex:'3'
+        zIndex:'120'
       }}
     >
       {icons.map((icon, index) => (

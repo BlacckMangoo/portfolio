@@ -71,18 +71,7 @@ const BlogCard = ({ position, title, rotation, onClick}) => {
 const Effects = () => {
   return (
     <EffectComposer>
-      {/* Slight color distortion for a cyber effect */}
-      <ChromaticAberration
-        offset={[0.001, 0.0017]}
-        blendFunction={BlendFunction.NORMAL}
-      />
-
-      {/* Darkened edges */}
-      <Vignette
-        offset={0.5}
-        darkness={0.9}
-        blendFunction={BlendFunction.NORMAL}
-      />
+     
     </EffectComposer>
   );
 };
@@ -99,8 +88,8 @@ const BlogCardsList = () => {
   };
 
   return (
-    <div className="w-screen h-screen">
-      <Canvas style={{ width: "150rem", height: "50rem" }}>
+    <div className="blog-cards-container">
+      <Canvas>
         <PerspectiveCamera makeDefault position={[0, 0, 15]} />
         <ambientLight intensity={0.5} />
 
@@ -110,7 +99,6 @@ const BlogCardsList = () => {
             position={blog.position}
             title={blog.title}
             rotation={blog.rotation}
-           
             onClick={() => handleCardClick(blog.url)}
           />
         ))}

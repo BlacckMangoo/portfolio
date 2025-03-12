@@ -6,10 +6,11 @@ const IconListComponent = ({ icons, gap = '10px', size = '24px' }) => {
     <div
       style={{
         display: 'flex',
+        flexWrap: 'wrap',
         gap,
         alignItems: 'center',
         justifyContent: 'center',
-        margin: '2vh',
+        margin: '1rem 0',
       }}
     >
       {icons.map((icon, index) => (
@@ -21,6 +22,7 @@ const IconListComponent = ({ icons, gap = '10px', size = '24px' }) => {
             justifyContent: 'center',
             alignItems: 'center',
             color: '#00ff00', // Green color for the icons
+            margin: '5px',
           }}
         >
           {icon}
@@ -31,7 +33,9 @@ const IconListComponent = ({ icons, gap = '10px', size = '24px' }) => {
 };
 
 export default function IconTray({ iconlist }) {
+  // Use responsive size based on viewport width
+  const iconSize = window.innerWidth < 576 ? '50px' : '70px';
   return (
-    <IconListComponent icons={iconlist} gap="20px" size="70px" />
+    <IconListComponent icons={iconlist} gap="15px" size={iconSize} />
   );
 }

@@ -5,13 +5,13 @@ import console from '/src/console.png';
 const Console = () => {
   const { ref, inView } = useInView({
     triggerOnce: true, // Trigger animation only once
-    threshold: 0.5, // 50% of the element must be visible
+    threshold: 0.2, // 50% of the element must be visible
   });
 
   return (
     <>
     <motion.img   ref={ref} src= {console} className='console' initial={{  opacity: 0 ,scale: 0.6} }
-    animate={ inView? { opacity: 1,scale:0.8 } : {}}   
+    animate={ inView? { opacity: 1,scale:1.5 } : {}}   
     transition={{ duration: 1 }} 
      />
     </>

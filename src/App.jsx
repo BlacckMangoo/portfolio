@@ -60,6 +60,7 @@ const App = () => {
 
         {/* Right: Text Content */}
         <div className="text-container">
+          <div className='text-content center'>
           <TypingEffect text="   My Name is"></TypingEffect>
           
           <motion.h1  initial={{ opacity: 0 }}
@@ -68,12 +69,13 @@ const App = () => {
       <motion.div className='taglines'initial={{ x: "50vw" }} 
         animate={{ x: "0vw" }} 
         transition={{ type: "spring", stiffness: 100, damping: 15 }}>
-      <p> <small>I Love learning and making new things</small></p> <br />
+      <p> <small>I Love learning and building stuff</small></p> <br />
        <p><strong>A</strong>rt | <strong>G</strong>amedev | <strong>P</strong>hilosophy | <strong>C</strong>oding</p>
        </motion.div>
+       </div>
        <Console></Console>
 
-       <motion.h1    initial={{  opacity: 0 ,scale: 0} }
+       <motion.h1 id="blog-section" initial={{  opacity: 0 ,scale: 0} }
         animate={ inView? { opacity: 1,scale:1 } : {}}
         transition={{ duration: 1 }}><strong> MY BLOGS</strong></motion.h1>
 <motion.div ref={ref}  initial={{  opacity: 0 ,scale: 0} }
@@ -82,18 +84,44 @@ const App = () => {
         </motion.div>
        
 
-       <motion.h1   initial={{  opacity: 0 ,scale: 0} }
+       <motion.h1 id="projects-section" initial={{  opacity: 0 ,scale: 0} }
         animate={ inView? { opacity: 1,scale:1 } : {}}
         transition={{ duration: 1 }}><strong> MY PROJECTS</strong></motion.h1>
         <Projects> </Projects>
         <ProjectsTwo></ProjectsTwo>
         
-        <motion.h1    initial={{  opacity: 1 ,scale: 1} }
+        <motion.h1 id="artworks-section" initial={{  opacity: 1 ,scale: 1} }
         animate={ inView? { opacity: 1,scale:1 } : {}}
         transition={{ duration: 1 }} style={{marginBottom:'3%'}}><strong> MY ARTWORKS</strong></motion.h1>
 
         <ArtGallery></ArtGallery>
         
+        <motion.button
+  className="back-to-top"
+  onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+  initial={{ opacity: 0 }}
+  animate={{ opacity: 1 }}
+  whileHover={{ scale: 1.1 }}
+  style={{
+    position: 'fixed',
+    bottom: '20px',
+    right: '20px',
+    backgroundColor: 'black',
+    color: '#00ff00',
+    border: '2px solid #00ff00',
+    borderRadius: '50%',
+    width: '50px',
+    height: '50px',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    cursor: 'pointer',
+    boxShadow: '0 0 10px rgba(0, 255, 0, 0.5)',
+    zIndex: 100
+  }}
+>
+  ↑
+</motion.button>
         </div>
       </div>  
     </div>

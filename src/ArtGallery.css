@@ -1,38 +1,128 @@
 .art-gallery {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 16px;
-    justify-content: center;
-    padding: 20px;
-    backdrop-filter: blur(4px);
-    background: rgba(249, 249, 249, 0.001);
-   border: 3px;
-   border-color: azure;
-    overflow-y: scroll; /* Enables vertical scrolling */
-    height: 100vh; /* Full-page height for scrolling */
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 20px;
+  justify-content: center;
+  padding: 20px;
+  backdrop-filter: blur(4px);
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+  overflow-y: auto;
+  height: auto;
+  min-height: 400px;
+  width: 100%;
+  max-width: 1800px;
+  margin: 0 auto 40px;
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+.image-container {
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  box-shadow: 0 4px 15px rgba(0, 255, 0, 0.3);
+  border-radius: 8px;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  height: auto;
+  min-height: 200px;
+}
+
+.image-container:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(0, 255, 0, 0.5);
+}
+
+.art-gallery::-webkit-scrollbar {
+  display: none; /* Hides scrollbar in Chrome/Safari/Opera */
+}
+
+.art-image {
+  width: 100%;
+  height: auto;
+  display: block;
+  transition: transform 0.5s ease;
+}
+
+.image-container:hover .art-image {
+  transform: scale(1.05);
+}
+
+/* Responsive grid adjustments */
+@media (min-width: 576px) {
+  .art-gallery {
+    grid-template-columns: repeat(1, minmax(400px, 1fr));
+    padding: 25px;
+    gap: 30px;
+  }
+}
+
+@media (min-width: 768px) {
+  .art-gallery {
+    grid-template-columns: repeat(2, minmax(350px, 1fr));
+    padding: 25px;
+    gap: 30px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .art-gallery {
+    grid-template-columns: repeat(2, minmax(400px, 1fr));
+    padding: 30px;
+    gap: 35px;
+  }
+}
+
+@media (min-width: 1600px) {
+  .art-gallery {
+    grid-template-columns: repeat(3, minmax(450px, 1fr));
+    gap: 40px;
+    padding: 35px;
+  }
+}
+
+/* Special layout for featured artwork */
+.art-gallery > div:nth-child(3n+1) {
+  grid-column: span 1;
+}
+
+@media (min-width: 1200px) {
+  .art-gallery > div:first-child {
+    grid-column: span 2;
+  }
+}
+
+/* Center images when they're alone in a row */
+@media (min-width: 576px) and (max-width: 767px) {
+  .art-gallery {
+    justify-items: center;
   }
   
   .image-container {
-    width: calc(50% - 16px); /* Ensures two images per row with gap */
-    max-width: 1000px; /* Optional: limit max width of images */
-    display: flex;
-  
-    justify-content: center;
-    align-items: center;
-    margin: 5px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow for effect */
-    border-radius: 6px; /* Rounded corners */
-    
+    max-width: 600px;
   }
-  
-  .art-gallery::-webkit-scrollbar {
-    display: none; /* Hides scrollbar */
-  }
-  
-  .art-image {
-    width: 100%;
-    height: auto; /* Maintain aspect ratio */
-    border-radius: 8px; /* Match container border radius */
-    object-fit: cover;
-  }
-  
+}
+
+/* Handle single item in last row */
+.art-gallery > div:last-child:nth-child(odd) {
+  grid-column: 1 / -1;
+  justify-self: center;
+  max-width: 600px;
+}
+
+/* Make sure only child is centered properly */
+.art-gallery > div:only-child {
+  grid-column: 1 / -1;
+  justify-self: center;
+  max-width: 600px;
+}
+
+/* Make sure wide images that span columns are centered */
+.art-gallery > div[style*="gridColumn: span 2"] {
+  justify-self: center;
+  max-width: 900px;
+}
