@@ -1,4 +1,4 @@
-* {
+h* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -21,8 +21,6 @@ body {
   width: 100%;
 }
 
-
-
 /* Full App Container */
 .app-container {
   min-height: 100vh;
@@ -35,7 +33,7 @@ body {
 /* Navbar Styling */
 .navbar {
   display: flex;
-  justify-content: flex-start;
+  justify-content: center;
   align-items: center;
   flex-wrap: wrap;
   width: 100%;
@@ -76,11 +74,12 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   padding: 1rem;
   width: 100%;
   position: relative;
   z-index: 2;
-
+  max-width: 1200px;
   margin: 0 auto;
 }
 
@@ -88,29 +87,32 @@ body {
 .intro-section {
   width: 100%;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin-bottom: var(--section-spacing);
+  margin: 0 auto var(--section-spacing);
+  max-width: 1200px;
 }
 
 /* Section Wrappers */
 .section-wrapper {
   width: 100%;
-  margin-bottom: var(--section-spacing);
+  margin: 0 auto var(--section-spacing);
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   align-items: center;
+  justify-content: center;
+  max-width: 1200px;
 }
 
 /* Profile Image Container */
 .mesh-container {
   width: 100%;
-
   display: flex;
   justify-content: center;
   align-items: center;
   margin: 1rem auto;
+  max-width: 300px;
 }
 
 .mesh-container img {
@@ -129,31 +131,29 @@ body {
   justify-content: center;
   align-items: center;
   text-align: center;
-
   font-size: clamp(0.9rem, 1.5vw, 1.5rem);
+  padding: 0 1rem;
 }
 
 .text-content {
   width: 100%;
-  display :flex; 
+  display: flex;
   flex-direction: column;
-  align-items: flex-end;
+  align-items: center;
   margin: 0 auto;
-  align-content: flex-end;
-  padding-top: 6rem;
+  padding-top: 2rem;
+  text-align: center;
 }
 
 .text-container h1 {
-  font-size: clamp(4rem, 7vw, 2.5rem);
+  font-size: clamp(2.5rem, 7vw, 4rem);
   margin: 0.5rem 0;
   width: 100%;
- 
+  text-align: center;
 }
 
 .text-container h1 strong {
   color: var(--primary-color);
-  font: 4rem ;
-
 }
 
 p strong {
@@ -162,9 +162,8 @@ p strong {
 
 .taglines {
   width: 100%;
-
   font-size: clamp(0.8rem, 3vw, 2.2rem);
-
+  text-align: center;
 }
 
 /* Matrix Background */
@@ -183,12 +182,49 @@ p strong {
 #blog-section,
 #projects-section,
 #artworks-section {
+  padding: 4rem 1rem;
+  scroll-margin-top: 80px;
+  width: 100%;
+  text-align: center;
+  margin: 3rem auto 1.5rem;
+  font-size: clamp(1.5rem, 3vw, 2.5rem);
+  max-width: 1200px;
+}
+/* Section headers */
+#blog-section,
+#projects-section,
+#artworks-section {
   padding: 8rem;
   scroll-margin-top: 80px;
   width: 100%;
   text-align: center;
   margin: 3rem 0 1.5rem;
   font-size: clamp(1.5rem, 3vw, 2.5rem);
+}
+
+.section-heading, 
+#blog-section,
+#projects-section,
+#artworks-section {
+  text-align: center;
+  width: 100%;
+  margin: 3rem 0 1.5rem 0;
+  color: white;
+  font-size: 2.5rem;
+  z-index: 10;
+  position: relative;
+}
+
+h1 strong {
+  display: inline-block; /* Ensures the element takes up space */
+  color: white;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+#blog-section {
+  text-align: center;
+  width: 100%;
+  margin: 3rem 0 1.5rem 0;
 }
 
 /* Blog Section */
@@ -199,17 +235,42 @@ p strong {
   margin: 0 auto;
 }
 
-.blog-cards-container
-{
-  
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
-  align-items: center;
-  justify-content: center;
+.blog-cards-container {
+  position: relative;
   width: 100%;
-  min-width: 70vb;
-  min-height: 100vh;
+  min-height: 80vh;
+  margin: 40px 0;
+  overflow: hidden;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.blog-section-title {
+  position: absolute;
+  top: 20px;
+  left: 0;
+  width: 100%;
+  text-align: center;
+  color: #00ff00;
+  font-size: 2.5rem;
+  text-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
+  z-index: 10;
+}
+
+#blogs.section {
+  padding: 20px 0;
+  background-color: #080808;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+  .blog-cards-container {
+    min-height: 60vh;
+  }
+  
+  .blog-section-title {
+    font-size: 1.8rem;
+  }
 }
 
 /* Projects Container */
@@ -220,17 +281,19 @@ p strong {
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
 }
 
-/* Project sections - fixed layout issues */
+/* Project sections */
 .project-container {
   display: flex;
   padding: 1.5rem 1rem;
-  margin: 2rem 0;
+  margin: 2rem auto;
   width: 100%;
   gap: 2rem;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   min-height: auto;
   max-width: 1200px;
 }
@@ -270,14 +333,6 @@ p strong {
   display: flex;
   justify-content: center;
   align-items: center;
-}
-
-/* Blog Cards Container */
-.blog-cards-container {
-  width: 100%;
-  height: 50vh;
-  min-height: 300px;
-  margin: 2rem 0;
 }
 
 /* Back to top button */
@@ -324,6 +379,25 @@ p strong {
   height: 30px;
 }
 
+/* Play Button */
+.play-button {
+  display: inline-block;
+  background-color: #FA5C5C;
+  color: white;
+  padding: 10px 20px;
+  text-decoration: none;
+  border-radius: 5px;
+  margin-top: 15px;
+  font-weight: bold;
+  transition: all 0.3s ease;
+}
+
+.play-button:hover {
+  background-color: #E04444;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
 /* Media Queries */
 @media (min-width: 768px) {
   .navbar {
@@ -337,9 +411,8 @@ p strong {
     font-size: 0.9rem;
   }
   
-  .console {
-    max-width: 100vw;
-    margin: 3rem auto;
+  .text-content {
+    padding-top: 3rem;
   }
   
   .project-container {
@@ -348,10 +421,6 @@ p strong {
     justify-content: center;
   }
   
-  .project-container p {
-    text-align: left;
-  }
-
   .mesh-container {
     max-width: 450px;
   }
@@ -394,6 +463,7 @@ p strong {
 
   .text-content {
     margin: 0;
+    align-items: flex-start;
   }
   
   .taglines {
@@ -425,7 +495,11 @@ p strong {
   
   .project-container p {
     text-align: left;
-    max-width: 100%; /* Let it fill available space within .project-content */
+    max-width: 100%;
+  }
+  
+  .text-container h1 {
+    text-align: left;
   }
 }
 
@@ -435,11 +509,6 @@ p strong {
     padding: 0.5rem 2rem;
     letter-spacing: 3px;
     font-size: 1rem;
-  }
-  
-  .console {
-    max-width: 70vw;
-    min-width: 70vh;
   }
   
   /* Social icons */
@@ -466,8 +535,11 @@ p strong {
     font-size: 0.7rem;
   }
   
+  .text-content {
+    padding-top: 1.5rem;
+  }
   
-  /* Reduce size of social icons on small screens */
+  /* Social icons positioning for mobile */
   .social-icons-container {
     top: auto !important;
     bottom: 10px !important;
@@ -489,11 +561,12 @@ p strong {
     right: 15px;
   }
 
-  /* Make project videos more visible */
+  /* Make project content more mobile-friendly */
   .project-container {
     padding: 1rem 0.5rem;
-    margin: 1rem 0;
+    margin: 1rem auto;
     gap: 1rem;
+    width: 95%;
   }
   
   .project-container h1 {
@@ -506,11 +579,16 @@ p strong {
     line-height: 1.4;
   }
   
-  .project-video video {
-    max-height: none;
+  .section-wrapper {
+    padding: 0 0.5rem;
   }
   
-
+  #blog-section,
+  #projects-section,
+  #artworks-section {
+    padding: 2rem 0.5rem;
+    margin: 2rem auto 1rem;
+  }
 }
 
 /* Ensure no overlap between navbar and social icons on very small screens */
@@ -520,58 +598,12 @@ p strong {
     padding: 0.3rem 0.5rem;
     font-size: 0.65rem;
   }
-}
-
-/* Mobile navbar and social icon fixes */
-@media (max-width: 576px) {
-  /* Navbar adjustments */
-  .navbar {
-    justify-content: center;
-    padding: 0.3rem;
-    flex-wrap: wrap;
+  
+  .text-container h1 {
+    font-size: clamp(2rem, 7vw, 3rem);
   }
   
-  .nav-button {
-    margin: 0.3rem;
-    padding: 0.4rem 0.7rem;
-    font-size: 0.7rem;
-  }
-
-  /* Social icons positioning */
-  .social-icons-container {
-    position: fixed !important;
-    top: auto !important;
-    bottom: 10px !important;
-    left: 10px !important;
-    right: auto !important;
-    padding: 5px !important;
-    z-index: 1000 !important;
-  }
-  
-  .social-icons-container svg {
-    width: 24px;
-    height: 24px;
-  }
-  
-  /* Adjust back-to-top to not overlap with social icons */
-  .back-to-top {
-    width: 35px;
-    height: 35px;
-    bottom: 15px;
-    right: 15px;
+  .taglines {
+    font-size: clamp(0.7rem, 3vw, 1.8rem);
   }
 }
-
-
-
-
-/* Ensure no overlap between navbar and social icons on very small screens */
-@media (max-width: 360px) {
-  .nav-button {
-    margin: 0.2rem;
-    padding: 0.3rem 0.5rem;
-    font-size: 0.65rem;
-  }
-}
-
-

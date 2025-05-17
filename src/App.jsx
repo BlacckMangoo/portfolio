@@ -69,24 +69,49 @@ const App = () => {
        </div>
    
 
-       <motion.h1 id="blog-section" initial={{  opacity: 0 ,scale: 0} }
-        animate={ inView? { opacity: 1,scale:1 } : {}}
-        transition={{ duration: 1 }}><strong> MY BLOGS</strong></motion.h1>
-<motion.div ref={ref}  initial={{  opacity: 0 ,scale: 0} }
-        animate={ inView? { opacity: 1,scale:1 } : {}}> 
-        <BlogCardsList></BlogCardsList>
+       <motion.h1 
+         id="blog-section" 
+         className="section-heading"
+         initial={{ opacity: 0, scale: 0 }}
+         animate={ inView ? { opacity: 1, scale: 1 } : {}}
+         transition={{ duration: 1 }}
+         style={{ position: 'relative', zIndex: 10, color: 'white' }}
+       >
+         <strong>MY BLOGS</strong>
+       </motion.h1>
+
+        {/* Properly placing the BlogCardsList component */}
+        <motion.div 
+          initial={{ opacity: 0, y: 50 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.2 }}
+        > 
+          <BlogCardsList />
         </motion.div>
        
-
-       <motion.h1 id="projects-section" initial={{  opacity: 0 ,scale: 0} }
-        animate={ inView? { opacity: 1,scale:1 } : {}}
-        transition={{ duration: 1 }}><strong> MY PROJECTS</strong></motion.h1>
+       <motion.h1 
+         id="projects-section" 
+         className="section-heading"
+         initial={{ opacity: 0, scale: 0 }}
+         animate={ inView ? { opacity: 1, scale: 1 } : {}}
+         transition={{ duration: 1 }}
+         style={{ position: 'relative', zIndex: 10, color: 'white' }}
+       >
+         <strong>MY PROJECTS</strong>
+       </motion.h1>
         <Projects> </Projects>
         <ProjectsTwo></ProjectsTwo>
         
-        <motion.h1 id="artworks-section" initial={{  opacity: 1 ,scale: 1} }
-        animate={ inView? { opacity: 1,scale:1 } : {}}
-        transition={{ duration: 1 }} style={{marginBottom:'3%'}}><strong> MY ARTWORKS</strong></motion.h1>
+        <motion.h1 
+         id="artworks-section" 
+         className="section-heading"
+         initial={{ opacity: 1, scale: 1 }}
+         animate={ inView ? { opacity: 1, scale: 1 } : {}}
+         transition={{ duration: 1 }} 
+         style={{ marginBottom: '3%', position: 'relative', zIndex: 10, color: 'white' }}
+       >
+         <strong>MY ARTWORKS</strong>
+       </motion.h1>
 
         <ArtGallery></ArtGallery>
         

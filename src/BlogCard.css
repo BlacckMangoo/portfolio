@@ -1,0 +1,106 @@
+.blog-section-container {
+  width: 100%;
+  padding: 2rem 0;
+  color: white;
+  background-color: transparent; /* Changed from #050505 to transparent */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 2rem; /* Add spacing after heading */
+  position: relative;
+  z-index: 5; /* Lower than heading z-index */
+}
+
+.blog-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.blog-card {
+  position: relative;
+  height: 200px;
+  border-radius: 8px;
+  overflow: hidden;
+  background-color: #000000;
+  border: 2px solid #00ff00;
+  box-shadow: 0 0 10px rgba(0, 255, 0, 0.3);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.blog-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 5px;
+  box-shadow: 0 0 15px rgba(0, 255, 0, 0.5) inset;
+  opacity: 0.5;
+  z-index: 1;
+}
+
+.card-content {
+  padding: 1.5rem;
+  position: relative;
+  z-index: 2;
+  text-align: center;
+}
+
+.blog-card h3 {
+  color: #ffffff;
+  font-size: 1.4rem;
+  margin-bottom: 1rem;
+  text-shadow: 0 0 5px rgba(0, 255, 0, 0.7);
+}
+
+.card-hint {
+  color: #aaaaaa;
+  font-size: 0.9rem;
+  position: absolute;
+  bottom: 15px;
+  left: 0;
+  width: 100%;
+  text-align: center;
+}
+
+/* Media queries for responsive design */
+@media (max-width: 768px) {
+  .blog-grid {
+    grid-template-columns: 1fr;
+    padding: 0 1rem;
+  }
+}
+
+/* Fallback styles */
+.blog-fallback-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.blog-card-fallback {
+  padding: 1.5rem;
+  border-radius: 8px;
+  background-color: #111111;
+  border: 2px solid #00ff00;
+  box-shadow: 0 0 10px rgba(0, 255, 0, 0.3);
+  text-align: center;
+  cursor: pointer;
+  position: relative;
+}
+
+.blog-card-fallback h3 {
+  margin-bottom: 2rem;
+}

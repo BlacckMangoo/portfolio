@@ -22,9 +22,16 @@ const Projects = () => {
     >
       <div className="project-content">
         <h1>Accord</h1>
-        <h1> </h1>
         <p>{explanationText}</p>
         <IconTray iconlist={icons} />
+        <a 
+          href="https://satvikkgupta.itch.io/acord" 
+          target="_blank" 
+          rel="noopener noreferrer" 
+          className="play-button"
+        >
+          Play on itch.io
+        </a>
       </div>
       
       <div className="project-video">
