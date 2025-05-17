@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import "./ArtGallery.css";
 import { motion } from "framer-motion";
+import LazyLoadImage from "./LazyLoadImage.jsx";
+import { preloadImages } from "./utils/assetLoader.js";
 
 // Import images
 import meditation from './artworks/Screenshot 2025-01-17 020237.png';
@@ -182,12 +184,10 @@ const ArtGallery = () => {
                 marginRight: row.length === 1 ? 'auto' : null,
                 minHeight: 'auto'
               }}
-            >
-              <img 
+            >              <LazyLoadImage 
                 src={src} 
                 alt={`Artwork ${index + 1}`} 
                 className="art-image"
-                loading="lazy"
               />
             </motion.div>
           ))}

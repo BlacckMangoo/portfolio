@@ -2,6 +2,7 @@ import OnlyNandsVideo from '/src/onlynands.mp4';
 import React from "react";
 import IconTray from './ToolsIconList.jsx';
 import { motion } from "framer-motion";
+import LazyLoadVideo from './LazyLoadVideo.jsx';
 
 const icons = [
   <i className="devicon-react-original-wordmark"></i>,
@@ -23,17 +24,9 @@ const ProjectsThree = () => {
         <h1>Only Nands</h1>
         <p>{explanationText}</p>
         <IconTray iconlist={icons} />
-      </div>
-        <div className="project-video">
-        <video
-          autoPlay
-          muted
-          loop
-        >
-          <source src={OnlyNandsVideo} type="video/mp4" />
-          Your browser does not support the video tag.
-        </video>
-      </div>
+      </div>        <div className="project-video">
+          <LazyLoadVideo src={OnlyNandsVideo} />
+        </div>
     </motion.div>
   );
 };

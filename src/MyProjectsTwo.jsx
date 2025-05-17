@@ -2,6 +2,7 @@ import SierpinskiVideo from '/src/sierpinski.mp4';
 import React from "react";
 import IconTray from './ToolsIconList.jsx';
 import { motion } from "framer-motion";
+import LazyLoadVideo from './LazyLoadVideo.jsx';
 
 const icons = [
   <i className="devicon-react-original-wordmark"></i>,
@@ -25,16 +26,8 @@ const ProjectsTwo = () => {
         <p>{explanationText}</p>
         <IconTray iconlist={icons} />
       </div>
-      
-      <div className="project-video">
-        <video
-          autoPlay
-          muted
-          loop
-        >
-          <source src={SierpinskiVideo} type="video/mp4" />
-          Your browser does not support the video tag.
-        </video>
+        <div className="project-video">
+        <LazyLoadVideo src={SierpinskiVideo} />
       </div>
     </motion.div>
   );

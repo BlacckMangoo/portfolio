@@ -2,6 +2,7 @@ import AccordVideo from '/src/trailer.mp4';
 import React from "react";
 import IconTray from './ToolsIconList.jsx';
 import { motion } from "framer-motion";
+import LazyLoadVideo from './LazyLoadVideo.jsx';
 
 const icons = [
   <i className="devicon-unity-plain-wordmark"></i>,
@@ -33,16 +34,8 @@ const Projects = () => {
           Play on itch.io
         </a>
       </div>
-      
-      <div className="project-video">
-        <video
-          autoPlay
-          muted
-          loop
-        >
-          <source src={AccordVideo} type="video/mp4" />
-          Your browser does not support the video tag.
-        </video>
+        <div className="project-video">
+        <LazyLoadVideo src={AccordVideo} />
       </div>
     </motion.div>
   );

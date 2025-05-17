@@ -396,6 +396,56 @@ p strong {
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
 }
 
+/* Additional loading and optimization styles */
+.video-container {
+  position: relative;
+  width: 100%;
+  min-height: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.loading-spinner {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+}
+
+/* Optimize image and video rendering */
+.project-video video,
+.console,
+.art-image {
+  will-change: transform, opacity;
+  contain: content;
+  content-visibility: auto;
+}
+
+/* Add image and video loading placeholders */
+.image-placeholder,
+.video-placeholder {
+  background: linear-gradient(
+    90deg,
+    rgba(0, 255, 0, 0.05) 0%,
+    rgba(0, 255, 0, 0.15) 50%,
+    rgba(0, 255, 0, 0.05) 100%
+  );
+  background-size: 200% 100%;
+  animation: loadingPulse 1.5s infinite;
+}
+
+@keyframes loadingPulse {
+  0% { background-position: 0% 0; }
+  100% { background-position: 200% 0; }
+}
+
+/* Hide native loading spinner on videos */
+video::-webkit-media-controls {
+  display: none !important;
+}
+
 /* Ensure navbar stays left-aligned at all screen sizes */
 @media (max-width: 768px) {
   .navbar {
