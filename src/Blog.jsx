@@ -65,7 +65,8 @@ const BlogCardsList = () => {
   ];
 
   return (
-    <div className="blog-section-container" id="blogs">
+    <div className="blog-section-container">
+      {/* Remove the redundant title here since it's now in App.jsx */}
       <div className="blog-grid">
         {blogs.map((blog) => (
           <motion.div 

@@ -4,9 +4,9 @@ import IconTray from './ToolsIconList.jsx';
 import { motion } from "framer-motion";
 
 const icons = [
-  <i class="devicon-unity-plain-wordmark"></i>,
-  <i class="devicon-photoshop-plain"></i>,
-  <i class="devicon-csharp-plain-wordmark"></i>,
+  <i className="devicon-unity-plain-wordmark"></i>,
+  <i className="devicon-photoshop-plain"></i>,
+  <i className="devicon-csharp-plain-wordmark"></i>,
 ];
 
 const Projects = () => {

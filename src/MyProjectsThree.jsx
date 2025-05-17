@@ -1,16 +1,15 @@
-import SierpinskiVideo from '/src/sierpinski.mp4';
+import OnlyNandsVideo from '/src/onlynands.mp4';
 import React from "react";
 import IconTray from './ToolsIconList.jsx';
 import { motion } from "framer-motion";
 
 const icons = [
   <i className="devicon-react-original-wordmark"></i>,
-  <i className="devicon-threejs-original-wordmark"></i>,
   <i className="devicon-javascript-plain"></i>
 ];
 
-const ProjectsTwo = () => {
-  const explanationText = "I started it as a simple sierpinski triangle exercise to learn recursion and JavaScript, extended it to 3D using chaos game algorithm. Then I thought wouldn't it be crazy if I extend it to 4 dimensions and project it onto 3D space and got this interesting fractal";
+const ProjectsThree = () => {
+  const explanationText = "Only Nands is a Logic gate evaluator made in react, you can essentially build GTA 6 using this , just need a Billions of nands probably lmao and a lot of time. It is a simple logic gate evaluator that allows you to build complex circuits using only NAND gates. The project showcases the power of functional programming and the beauty of digital logic design. You can create any logic circuit using just NAND gates, which is a fundamental concept in computer science and electronics.";
 
   return (
     <motion.div
@@ -21,18 +20,17 @@ const ProjectsTwo = () => {
       viewport={{ once: true, margin: "-50px" }}
     >
       <div className="project-content">
-        <h1>Sierpinski Triangle Extended to 3D and 4D</h1>
+        <h1>Only Nands</h1>
         <p>{explanationText}</p>
         <IconTray iconlist={icons} />
       </div>
-      
-      <div className="project-video">
+        <div className="project-video">
         <video
           autoPlay
           muted
           loop
         >
-          <source src={SierpinskiVideo} type="video/mp4" />
+          <source src={OnlyNandsVideo} type="video/mp4" />
           Your browser does not support the video tag.
         </video>
       </div>
@@ -40,5 +38,4 @@ const ProjectsTwo = () => {
   );
 };
 
-export default ProjectsTwo;
-
+export default ProjectsThree;

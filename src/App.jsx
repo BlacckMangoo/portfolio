@@ -11,6 +11,7 @@ import MatrixBackground from './MatrixBackground.jsx';
 import BlogCardsList  from './Blog.jsx';
 import Projects from './myProjects.jsx';
 import ProjectsTwo from './MyProjectsTwo.jsx';
+import ProjectsThree from './MyProjectsThree.jsx';
 
 
 
@@ -58,8 +59,7 @@ const App = () => {
           <h1> Hey, I am </h1> <br />
           <motion.h1  initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      transition={{ duration: 2 }} > <strong>Satvik Gupta.</strong></motion.h1>
-      <motion.div className='taglines'initial={{ x: "vw" }} 
+      transition={{ duration: 2 }} > <strong>Satvik Gupta.</strong></motion.h1>      <motion.div className='taglines'initial={{ x: "vw" }} 
         animate={{ x: "0vw" }} 
         transition={{ type: "spring", stiffness: 100, damping: 15 }}>
       <p> <small>I Love learning and building stuff</small></p> <br />
@@ -67,55 +67,68 @@ const App = () => {
        </motion.div>
 
        </div>
+
+       {/* CONSOLE IMAGE SECTION */}
+       <motion.div
+         initial={{ opacity: 0, y: 30 }}
+         animate={{ opacity: 1, y: 0 }}
+         transition={{ duration: 0.8, delay: 0.3 }}
+         style={{ width: '100%', margin: '2rem 0' }}
+       >
+         <Console />
+       </motion.div>
    
+       {/* BLOGS SECTION */}
+       <div className="section-container">
+         <motion.h1 
+           id="blog-section" 
+           className="simple-heading"
+           initial={{ opacity: 0 }}
+           animate={{ opacity: 1 }}
+           transition={{ duration: 1 }}
+         >
+           <strong>MY BLOGS</strong>
+         </motion.h1>
 
-       <motion.h1 
-         id="blog-section" 
-         className="section-heading"
-         initial={{ opacity: 0, scale: 0 }}
-         animate={ inView ? { opacity: 1, scale: 1 } : {}}
-         transition={{ duration: 1 }}
-         style={{ position: 'relative', zIndex: 10, color: 'white' }}
-       >
-         <strong>MY BLOGS</strong>
-       </motion.h1>
+         <motion.div 
+           initial={{ opacity: 0, y: 50 }}
+           animate={{ opacity: 1, y: 0 }}
+           transition={{ duration: 0.8, delay: 0.2 }}
+         > 
+           <BlogCardsList />
+         </motion.div>
+       </div>
 
-        {/* Properly placing the BlogCardsList component */}
-        <motion.div 
-          initial={{ opacity: 0, y: 50 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-        > 
-          <BlogCardsList />
-        </motion.div>
-       
-       <motion.h1 
-         id="projects-section" 
-         className="section-heading"
-         initial={{ opacity: 0, scale: 0 }}
-         animate={ inView ? { opacity: 1, scale: 1 } : {}}
-         transition={{ duration: 1 }}
-         style={{ position: 'relative', zIndex: 10, color: 'white' }}
-       >
-         <strong>MY PROJECTS</strong>
-       </motion.h1>
-        <Projects> </Projects>
-        <ProjectsTwo></ProjectsTwo>
+       {/* PROJECTS SECTION */}
+       <div className="section-container">
+         <motion.h1 
+           id="projects-section" 
+           className="simple-heading"
+           initial={{ opacity: 0 }}
+           animate={{ opacity: 1 }}
+           transition={{ duration: 1 }}
+         >         <strong>MY PROJECTS</strong>
+         </motion.h1>
+         <Projects />
+         <ProjectsTwo />
+         <ProjectsThree />
+       </div>
         
-        <motion.h1 
-         id="artworks-section" 
-         className="section-heading"
-         initial={{ opacity: 1, scale: 1 }}
-         animate={ inView ? { opacity: 1, scale: 1 } : {}}
-         transition={{ duration: 1 }} 
-         style={{ marginBottom: '3%', position: 'relative', zIndex: 10, color: 'white' }}
-       >
-         <strong>MY ARTWORKS</strong>
-       </motion.h1>
+       {/* ARTWORKS SECTION */}
+       <div className="section-container">
+         <motion.h1 
+           id="artworks-section" 
+           className="simple-heading"
+           initial={{ opacity: 1 }}
+           animate={{ opacity: 1 }}
+           transition={{ duration: 1 }} 
+         >
+           <strong>MY ARTWORKS</strong>
+         </motion.h1>
+         <ArtGallery />
+       </div>
 
-        <ArtGallery></ArtGallery>
-        
-        <motion.button
+       <motion.button
   className="back-to-top"
   onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
   initial={{ opacity: 0 }}

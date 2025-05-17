@@ -1,57 +1,40 @@
-import { motion } from "framer-motion";
 import React from "react";
+// Remove the react-scroll import temporarily
 import './App.css';
-import Console from "./Console";
 
-export default function Navabar() {
+const Navbar = () => {
+  // Function to scroll to section using native JavaScript
   const scrollToSection = (sectionId) => {
-    const section = document.getElementById(sectionId);
-    if (section) {
-      // Add offset to account for sticky navbar
-      const yOffset = -80; 
-      const y = section.getBoundingClientRect().top + window.pageYOffset + yOffset;
-      
-      window.scrollTo({
-        top: y,
-        behavior: 'smooth'
-      });
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
     }
   };
 
   return (
     <nav className="navbar">
-      <motion.button 
-        initial={{ opacity: 0, y:-50, scale: 1.2 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.2 }}
-        whileHover={{ scale: 1.6 }}
-        className="nav-button"
-        onClick={() => scrollToSection('blog-section')}
+      {/* Navigation buttons aligned to the left */}
+      <button 
+        className="nav-button" 
+        onClick={() => scrollToSection("blog-section")}
       >
         Blogs
-      </motion.button>
-      
-      <motion.button
-        initial={{ opacity: 0, y:-50, scale:1.2 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.2 }}
-        whileHover={{ scale: 1.6 }}
-        className="nav-button"
-        onClick={() => scrollToSection('projects-section')}
+      </button>
+      <button 
+        className="nav-button" 
+        onClick={() => scrollToSection("projects-section")}
       >
         Projects
-      </motion.button>
-      
-      <motion.button
-        initial={{ opacity: 0, y:-50, scale: 1.2 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.2 }}
-        whileHover={{ scale: 1.6 }}
-        className="nav-button"
-        onClick={() => scrollToSection('artworks-section')}
+      </button>
+      <button 
+        className="nav-button" 
+        onClick={() => scrollToSection("artworks-section")}
       >
-        Art Works
-      </motion.button>
+        Artworks
+      </button>
+      {/* Other navigation buttons */}
     </nav>
   );
-}
+};
+
+export default Navbar;

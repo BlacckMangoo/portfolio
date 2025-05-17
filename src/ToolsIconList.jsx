@@ -25,7 +25,7 @@ const IconListComponent = ({ icons, gap = '10px', size = '24px' }) => {
             margin: '5px',
           }}
         >
-          {icon}
+          {React.cloneElement(icon, { className: `${icon.props.className || ""} icon-element` })}
         </div>
       ))}
     </div>

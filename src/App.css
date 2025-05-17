@@ -33,14 +33,14 @@ body {
 /* Navbar Styling */
 .navbar {
   display: flex;
-  justify-content: center;
+  justify-content: flex-start; /* Changed from center to flex-start to align items to the left */
   align-items: center;
   flex-wrap: wrap;
   width: 100%;
   position: sticky;
   top: 0;
   z-index: 100;
-  padding: 0.5rem;
+  padding: 0.5rem 1rem; /* Added left padding for better spacing */
   background-color: rgba(0, 0, 0, 0.8);
   backdrop-filter: blur(8px);
   border-bottom: 1px solid rgba(0, 255, 0, 0.2);
@@ -182,49 +182,47 @@ p strong {
 #blog-section,
 #projects-section,
 #artworks-section {
-  padding: 4rem 1rem;
-  scroll-margin-top: 80px;
-  width: 100%;
-  text-align: center;
-  margin: 3rem auto 1.5rem;
-  font-size: clamp(1.5rem, 3vw, 2.5rem);
-  max-width: 1200px;
-}
-/* Section headers */
-#blog-section,
-#projects-section,
-#artworks-section {
-  padding: 8rem;
-  scroll-margin-top: 80px;
-  width: 100%;
-  text-align: center;
-  margin: 3rem 0 1.5rem;
-  font-size: clamp(1.5rem, 3vw, 2.5rem);
+  text-align: center !important;
+  width: 100% !important;
+  margin: 3rem 0 1.5rem 0;
+  padding: 1rem !important; /* Reduce excessive padding */
+  font-size: clamp(1.8rem, 3vw, 2.5rem);
+  max-width: none !important; /* Remove max-width constraint */
+  position: relative;
+  z-index: 10;
 }
 
-.section-heading, 
-#blog-section,
-#projects-section,
-#artworks-section {
-  text-align: center;
+/* Overriding any potential conflicting styles */
+.section-container {
+  position: relative;
   width: 100%;
-  margin: 3rem 0 1.5rem 0;
+  margin: 3rem 0 2rem 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+/* Reset any section-specific overrides */
+#projects-section, 
+#artworks-section {
+  padding: 1rem !important; /* Match blog section padding */
+  scroll-margin-top: 80px;
+}
+
+/* Make sure all simple headings are properly centered */
+.simple-heading {
   color: white;
   font-size: 2.5rem;
-  z-index: 10;
+  text-align: center !important;
+  width: 100% !important;
+  margin: 2rem 0;
+  font-weight: bold;
   position: relative;
-}
-
-h1 strong {
-  display: inline-block; /* Ensures the element takes up space */
-  color: white;
-  text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
-}
-
-#blog-section {
-  text-align: center;
-  width: 100%;
-  margin: 3rem 0 1.5rem 0;
+  z-index: 20;
+  max-width: none !important;
+  display: block;
 }
 
 /* Blog Section */
@@ -398,212 +396,204 @@ h1 strong {
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
 }
 
-/* Media Queries */
-@media (min-width: 768px) {
+/* Ensure navbar stays left-aligned at all screen sizes */
+@media (max-width: 768px) {
   .navbar {
-    padding: 1rem;
+    justify-content: flex-start;
+    padding-left: 0.5rem;
   }
+}
 
-  .nav-button {
-    margin: 0.5rem 1rem;
-    padding: 0.5rem 1.5rem;
-    letter-spacing: 2px;
-    font-size: 0.9rem;
-  }
-  
-  .text-content {
-    padding-top: 3rem;
-  }
-  
-  .project-container {
-    flex-direction: row;
-    flex-wrap: wrap;
+/* Responsive fixes for social icons */
+@media screen and (max-width: 768px) {
+  .social-icons-container {
+    position: relative;
+    display: flex;
     justify-content: center;
+    padding: 10px 0;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    z-index: 30;
   }
   
-  .mesh-container {
-    max-width: 450px;
-  }
-  
-  /* Social icons */
-  .social-icons-container svg {
-    width: 40px;
-    height: 40px;
+  .social-icons-container a {
+    margin: 0 10px;
   }
   
   .back-to-top {
-    width: 50px;
-    height: 50px;
+    bottom: 70px !important; /* Move up back to top button on mobile */
+    right: 10px !important;
+    width: 40px !important;
+    height: 40px !important;
   }
 }
 
-@media (min-width: 992px) {
-  :root {
-    --section-spacing: 6rem;
-  }
-
-  .intro-section {
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-  
-  .mesh-container {
-    flex: 0 0 40%;
-    margin-top: 2rem;
-    align-self: flex-start;
-  }
-  
-  .text-container {
-    flex: 0 0 60%;
-    align-items: flex-start;
-    text-align: left;
-    padding: 1rem 2rem;
-  }
-
-  .text-content {
-    margin: 0;
-    align-items: flex-start;
+/* Responsive fixes for social icons - Updated for medium screens too */
+@media screen and (max-width: 1024px) {
+  .social-icons-container {
+    position: fixed !important;
+    bottom: 20px !important;
+    left: 20px !important;
+    top: auto !important;
+    right: auto !important;
+    display: flex;
+    flex-direction: column;
+    z-index: 1000 !important;
+    background-color: rgba(0, 0, 0, 0.6);
+    border-radius: 10px;
+    padding: 8px !important;
   }
   
-  .taglines {
-    text-align: left;
+  .social-icons-container a {
+    margin: 5px 0;
   }
   
-  .project-container {
-    flex-direction: row;
-    flex-wrap: nowrap;
-    justify-content: space-between;
-    align-items: center;
-    min-height: auto;
-  }
-  
-  .project-content {
-    flex: 1;
-    max-width: 40%;
-    align-items: flex-start;
-  }
-  
-  .project-video {
-    flex: 1.5;
-    max-width: 60%;
-  }
-  
-  .project-container h1 {
-    text-align: left;
-  }
-  
-  .project-container p {
-    text-align: left;
-    max-width: 100%;
-  }
-  
-  .text-container h1 {
-    text-align: left;
+  .back-to-top {
+    bottom: 20px !important;
+    right: 20px !important;
   }
 }
 
-@media (min-width: 1200px) {
-  .nav-button {
-    margin: 0.5rem 2rem;
-    padding: 0.5rem 2rem;
-    letter-spacing: 3px;
-    font-size: 1rem;
+/* Overriding previous media query for larger screens */
+@media screen and (max-width: 768px) {
+  .navbar {
+    justify-content: flex-start;
+    padding-left: 0.5rem;
   }
   
-  /* Social icons */
-  .social-icons-container svg {
-    width: 48px;
-    height: 48px;
+  /* Remove conflicting social icon styles */
+  .social-icons-container {
+    position: fixed !important;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    width: auto;
+    background-color: rgba(0, 0, 0, 0.6);
+    border-radius: 10px;
   }
+}
+
+/* Keep the existing smaller screen adjustments */
+@media screen and (max-width: 640px) {
+  /* No need to repeat position settings, they come from the larger breakpoint */
+  .social-icons-container {
+    padding: 6px !important;
+  }
+}
+
+/* Additional responsive fixes for even smaller screens */
+@media screen and (max-width: 480px) {
+  .social-icons-container {
+    bottom: 15px !important;
+    left: 15px !important;
+    padding: 5px !important;
+  }
+  
+  .social-icons-container a {
+    transform: scale(0.8); /* Make the icons slightly smaller */
+  }
+  
+  .section-container {
+    margin: 3rem 0 1rem 0;
+  }
+  
+  .simple-heading {
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+  }
+}
+
+/* Blog Section Specific Styling */
+.blog-section-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 0 1rem;
+}
+
+.blog-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+  justify-items: center; /* Center items horizontally in their cells */
+}
+
+.simple-heading {
+  color: white;
+  font-size: 2.5rem;
+  text-align: center !important;
+  width: 100% !important;
+  margin: 2rem 0;
+  font-weight: bold;
+  position: relative;
+  z-index: 20;
+  max-width: none !important;
+  display: block;
+}
+
+/* Blog Card Styling */
+.blog-card {
+  position: relative;
+  height: 200px;
+  width: 100%;
+  max-width: 350px;
+  border-radius: 8px;
+  overflow: hidden;
+  background-color: #000000;
+  border: 2px solid #00ff00;
+  box-shadow: 0 0 10px rgba(0, 255, 0, 0.3);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  margin: 0 auto;
+}
+
+/* Console Image Styling - minimal styling for just the image */
+/* Removed all decorative styling like glow effects and border-radius */
+/* Responsive styling for console image */
+@media (max-width: 992px) {
+  /* No specific styling needed - handled by inline styles */
 }
 
 @media (max-width: 576px) {
-  :root {
-    --section-spacing: 3rem;
-  }
+  /* No specific styling needed - handled by inline styles */
+}
 
-  .navbar {
-    justify-content: center;
-    padding: 0.3rem;
-    flex-wrap: wrap;
-  }
-  
-  .nav-button {
-    margin: 0.3rem;
-    padding: 0.4rem 0.7rem;
-    font-size: 0.7rem;
-  }
-  
-  .text-content {
-    padding-top: 1.5rem;
-  }
-  
-  /* Social icons positioning for mobile */
-  .social-icons-container {
-    top: auto !important;
-    bottom: 10px !important;
-    left: 10px !important;
-    right: auto !important;
-    padding: 5px !important;
-    z-index: 1000 !important;
-  }
-  
-  .social-icons-container svg {
-    width: 24px;
-    height: 24px;
-  }
-  
-  .back-to-top {
-    width: 35px;
-    height: 35px;
-    bottom: 15px;
-    right: 15px;
-  }
-
-  /* Make project content more mobile-friendly */
-  .project-container {
-    padding: 1rem 0.5rem;
-    margin: 1rem auto;
-    gap: 1rem;
-    width: 95%;
-  }
-  
-  .project-container h1 {
-    font-size: clamp(1.3rem, 5vw, 1.8rem);
-  }
-  
-  .project-container p {
-    font-size: clamp(0.85rem, 4vw, 1rem);
-    margin-bottom: 1rem;
-    line-height: 1.4;
-  }
-  
-  .section-wrapper {
+/* Blog Grid Responsive Adjustments */
+@media screen and (max-width: 768px) {
+  .blog-grid {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
     padding: 0 0.5rem;
   }
   
-  #blog-section,
-  #projects-section,
-  #artworks-section {
-    padding: 2rem 0.5rem;
-    margin: 2rem auto 1rem;
+  .blog-card {
+    height: 180px;
+    max-width: 280px;
   }
 }
 
-/* Ensure no overlap between navbar and social icons on very small screens */
-@media (max-width: 360px) {
-  .nav-button {
-    margin: 0.2rem;
-    padding: 0.3rem 0.5rem;
-    font-size: 0.65rem;
+@media screen and (max-width: 480px) {
+  .blog-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
   }
   
-  .text-container h1 {
-    font-size: clamp(2rem, 7vw, 3rem);
+  .blog-card {
+    height: 150px;
+    max-width: 250px;
   }
   
-  .taglines {
-    font-size: clamp(0.7rem, 3vw, 1.8rem);
+  .blog-card h3 {
+    font-size: 1.2rem;
   }
 }
