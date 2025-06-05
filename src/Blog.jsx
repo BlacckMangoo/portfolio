@@ -14,12 +14,11 @@ const BlogCardsFallback = () => {
     { 
       id: 2, 
       title: "Does Certainty Exist?", 
-      url: 'https://dev.to/blacckmangoo/does-certainity-exist--11mk' 
-    },
+      url: 'https://dev.to/blacckmangoo/does-certainity-exist--11mk'    },
     { 
       id: 3, 
-      title: "Exploring the Nature of Certainty", 
-      url: 'https://dev.to/blacckmangoo/does-certainity-exist--11mk' 
+      title: "How I Made 4D Fractals Using the Chaos Game Algorithm", 
+      url: 'https://dev.to/blacckmangoo/how-i-made-4d-fractals-using-the-chaos-game-algorithm-5gpf' 
     },
   ];
 
@@ -55,12 +54,11 @@ const BlogCardsList = () => {
     { 
       id: 2, 
       title: "Does Certainty Exist?", 
-      url: 'https://dev.to/blacckmangoo/does-certainity-exist--11mk' 
-    },
+      url: 'https://dev.to/blacckmangoo/does-certainity-exist--11mk'    },
     { 
       id: 3, 
-      title: "Exploring the Nature of Certainty", 
-      url: 'https://dev.to/blacckmangoo/does-certainity-exist--11mk' 
+      title: "How I Made 4D Fractals Using the Chaos Game Algorithm", 
+      url: 'https://dev.to/blacckmangoo/how-i-made-4d-fractals-using-the-chaos-game-algorithm-5gpf' 
     },
   ];
 
