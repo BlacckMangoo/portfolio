@@ -15,10 +15,9 @@ const IconLoader = ({ children }) => {
   }, []);
 
   return (
-    <div style={{ position: 'relative' }}>
-      {!isLoaded && (
+    <div style={{ position: 'relative' }}>      {!isLoaded && (
         <motion.div 
-          initial={{ opacity: 0.6 }}]
+          initial={{ opacity: 0.6 }}
           animate={{ opacity: [0.2, 0.8, 0.2] }}
           transition={{ 
             duration: 1.2,
