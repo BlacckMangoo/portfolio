@@ -19,10 +19,31 @@ const ProjectsThree = () => {
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
       viewport={{ once: true, margin: "-50px" }}
-    >
-      <div className="project-content">
+    >      <div className="project-content">
         <h1>Only Nands</h1>
         <p>{explanationText}</p>
+        <motion.a 
+          href="https://dldsimulator-frontend-4ep2ny3b2-blacckmangoos-projects.vercel.app/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="project-link-button"
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+          style={{
+            display: 'inline-block',
+            padding: '10px 20px',
+            margin: '15px 0',
+            background: 'linear-gradient(45deg, rgba(0, 255, 0, 0.1), rgba(0, 255, 0, 0.2))',
+            border: '2px solid #00ff00',
+            borderRadius: '8px',
+            color: '#00ff00',
+            textDecoration: 'none',
+            fontWeight: 'bold',
+            transition: 'all 0.3s ease'
+          }}
+        >
+          🚀 Try Live Demo
+        </motion.a>
         <IconTray iconlist={icons} />
       </div>        <div className="project-video">
           <LazyLoadVideo src={OnlyNandsVideo} />
