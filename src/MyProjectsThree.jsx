@@ -23,7 +23,7 @@ const ProjectsThree = () => {
         <h1>Only Nands</h1>
         <p>{explanationText}</p>
         <motion.a 
-          href="https://dldsimulator-frontend-4ep2ny3b2-blacckmangoos-projects.vercel.app/"
+          href="https://dldsimulator-frontend-blacckmangoos-projects.vercel.app/"
           target="_blank"
           rel="noopener noreferrer"
           className="project-link-button"
