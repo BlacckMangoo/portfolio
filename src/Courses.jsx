@@ -4,7 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 
 const coursesList = [
   {
-    title: "SIGNAL AND SYSTEM",
+    title: "SIGNAL AND SYSTEMS",
     summary: "Mathematical analysis of signals and systems using transform methods.",
     topics: ["Fourier Series", "Laplace Transform", "Z-Transform", "LTI Systems", "Sampling"],
     tags: ["EE", "Math"]
@@ -12,7 +12,7 @@ const coursesList = [
   {
     title: "PROBABILITY THEORY",
     summary: "Study of random phenomena and statistical inference.",
-    topics: ["Random Variables", "Distributions", "Bayes Theorem", "Stochastic Processes"],
+    topics: ["Random Variables", "Chebyshev Inequality", "Bayes Theorem", "Stochastic Processes"],
     tags: ["Math", "Stats"]
   },
   {
@@ -100,9 +100,7 @@ CourseCard.propTypes = {
 const Courses = () => {
   return (
     <section className="courses-section">
-      <h2 style={{ textAlign: 'center', marginBottom: '2rem', color: 'var(--primary-color)', fontFamily: 'Orbitron, sans-serif' }}>
-        MY COURSES
-      </h2>
+      
       <div className="courses-grid">
         {coursesList.map((course, index) => (
           <CourseCard key={index} course={course} />
