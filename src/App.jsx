@@ -150,7 +150,9 @@ const App = () => {
               animate={{ opacity: 1 }}
               transition={{ duration: 1 }}
             >
-              <strong>MY COURSES</strong>
+              <strong>
+                 Courses I've Taken
+              </strong>
             </motion.h1>
             <Courses />
           </div>
