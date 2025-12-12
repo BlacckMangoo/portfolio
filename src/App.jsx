@@ -10,6 +10,7 @@ import BlogCardsList from './Blog.jsx';
 import Project from './Project.jsx';
 import Courses from './Courses.jsx';
 import ArtGallery from './Gallery.jsx';
+import Education from './Education.jsx';
 
 // Import Videos
 import AccordVideo from './trailer.mp4';
@@ -37,7 +38,7 @@ const App = () => {
         <div className="main-content">
 
           {/* Hero Section */}
-          <div className="text-container">
+          <div id="home-section" className="text-container">
             <h1>Hey, I am</h1>
             <motion.h1
               initial={{ opacity: 0 }}
@@ -57,6 +58,8 @@ const App = () => {
                 computers work from bare metal to software </p>
               <p><strong>A</strong>rtist | <strong>G</strong>amedev | <strong>P</strong>hilosophy | <strong>C</strong>omp <strong>S</strong>ci</p> 
             </motion.div>
+
+            <Education />
           </div>
 
           <motion.hr
@@ -72,10 +75,6 @@ const App = () => {
             }}
             opacity={0.1}
           />
-
-        
-
-      .
 
           {/* BLOGS SECTION */}
           <div id="blog-section" className="section-container">

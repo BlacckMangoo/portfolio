@@ -1,11 +1,8 @@
-import React, { useRef, useEffect, useState } from 'react';
-
-
-
+import React, { useRef, useEffect } from 'react';
 
 const MatrixBackground = () => {
   const canvasRef = useRef(null);
-
+  const mouseRef = useRef({ x: 0, y: 0 });
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -16,20 +13,50 @@ const MatrixBackground = () => {
       canvas.height = window.innerHeight;
     };
 
+    const handleMouseMove = (e) => {
+      mouseRef.current = { x: e.clientX, y: e.clientY };
+    };
+
     window.addEventListener('resize', resize);
+    window.addEventListener('mousemove', handleMouseMove);
     resize();
 
     const chars = 'ABC⍾⍙⟒⍀⏁⊬⎍⟟⍜⏃⌇⎅⎎☌⊑⟊☍⌰⋉⌖☊⎐⏚⋏⋔D同学们好TU的一∑_{n=1}^{∞}(√(n²+π²)/e^(αn))∫₀^∞(sin(θ²)/(x²+1))dx+∇²∇²∇²∇²∇²∇²∇²∇²∇²∇²λ∇²φ(x)=σ(ω)是了我不人有在他VVXYZ0123456789@#$%^&*()अआइईउऊऋऍएऐऑओऔअंअःकखगघचछजझटठडढतथदधनपफबभमयरलवशषसहक्षत्रज्ञऩंःऽ';
     const charArray = chars.split('');
-    const fontSize = 24;
-    const columns = canvas.width / fontSize;
+    const fontSize = 18;
+    const columns = Math.ceil(canvas.width / fontSize);
 
+    // Store drop positions as floating point numbers for smooth movement
     const drops = [];
     for (let i = 0; i < columns; i++) {
-      drops[i] = 1;
+      drops[i] = Math.random() * canvas.height / fontSize;
     }
 
+    // Simple 2D Noise Function
+    const noise = (x, y) => {
+      const n = Math.sin(x * 12.9898 + y * 78.233) * 43758.5453123;
+      return n - Math.floor(n);
+    };
+
+    // Fractal Brownian Motion
+    const fbm = (x, y) => {
+      let total = 0;
+      let amplitude = 0.5;
+      let frequency = 1.0;
+      for (let i = 0; i < 4; i++) {
+        total += noise(x * frequency, y * frequency) * amplitude;
+        amplitude *= 0.5;
+        frequency *= 2.0;
+      }
+      return total;
+    };
+
+    let time = 0;
+
     const draw = () => {
+      time += 0.005; // Increment time for noise animation
+
+      // Fade effect
       ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
       ctx.fillRect(0, 0, canvas.width, canvas.height);
 
@@ -38,21 +65,55 @@ const MatrixBackground = () => {
 
       for (let i = 0; i < drops.length; i++) {
         const char = charArray[Math.floor(Math.random() * charArray.length)];
-        ctx.fillText(char, i * fontSize, drops[i] * fontSize);
+        
+        // Calculate position
+        const x = i * fontSize;
+        const y = drops[i] * fontSize;
 
-        if (drops[i] * fontSize > canvas.height && Math.random() > 0.97331472) {
+        // Repulsion Distortion Logic
+        const dx = x - mouseRef.current.x;
+        const dy = y - mouseRef.current.y;
+        const distance = Math.sqrt(dx * dx + dy * dy);
+        const maxDist = 400; // Radius of effect
+
+        let drawX = x;
+        let drawY = y;
+
+        if (distance < maxDist) {
+          const angle = Math.atan2(dy, dx);
+          const force = (maxDist - distance) / maxDist;
+          const repulsion = force * force * 200; // Stronger push closer to center
+
+          drawX += Math.cos(angle) * repulsion;
+          drawY += Math.sin(angle) * repulsion;
+        }
+
+        // Apply FBM to opacity for "natural" shimmering
+        const noiseVal = fbm(i * 0.1, time);
+        ctx.globalAlpha = 0.3 + noiseVal * 0.7; // Vary opacity between 0.3 and 1.0
+        ctx.fillText(char, drawX, drawY);
+        ctx.globalAlpha = 1.0; // Reset
+
+        // Reset drop if it goes off screen or randomly
+        if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
           drops[i] = 0;
         }
 
-        drops[i]++;
+        // Natural speed variation using FBM
+        // Columns near each other will have similar speeds (gusts of wind)
+        const speedNoise = fbm(i * 0.05, time * 0.5);
+        const speed = 0.5 + speedNoise * 1.5; // Speed varies between 0.5 and 2.0
+        
+        drops[i] += speed;
       }
     };
 
-    const interval = setInterval(draw, 40);
+    const interval = setInterval(draw, 33); // ~30fps
 
     return () => {
       clearInterval(interval);
       window.removeEventListener('resize', resize);
+      window.removeEventListener('mousemove', handleMouseMove);
     };
   }, []);
 
@@ -66,11 +127,11 @@ const MatrixBackground = () => {
         width: '100%',
         height: '100%',
         zIndex: 0,
-        opacity: 0.3
+        opacity: 0.3,
+        pointerEvents: 'none' // Allow clicks to pass through
       }}
     />
   );
 };
-;
 
 export default MatrixBackground;
