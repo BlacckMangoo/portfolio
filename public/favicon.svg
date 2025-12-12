@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <!-- Background -->
+  <rect width="64" height="64" fill="#000000" rx="12" />
+  
+  <!-- Glow Filter -->
+  <defs>
+    <filter id="neon-glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="2.5" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Neon S -->
+  <text 
+    x="50%" 
+    y="55%" 
+    text-anchor="middle" 
+    dominant-baseline="middle" 
+    font-family="monospace, sans-serif" 
+    font-weight="bold" 
+    font-size="48" 
+    fill="#00ff00" 
+    filter="url(#neon-glow)"
+    style="text-shadow: 0 0 5px #00ff00;"
+  >
+    S
+  </text>
+</svg>
