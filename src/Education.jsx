@@ -1,4 +1,4 @@
-import React from 'react';
+
 import { motion } from 'framer-motion';
 
 const Education = () => {
@@ -19,7 +19,6 @@ const Education = () => {
         border: '1px solid rgba(0, 255, 0, 0.2)',
         background: 'rgba(255, 255, 255, 0.03)',
         padding: '1.5rem',
-        borderRadius: '12px',
         maxWidth: '500px',
         marginLeft: 'auto',
         marginRight: 'auto'
@@ -35,7 +34,7 @@ const Education = () => {
         Netaji Subhas University of Technology
       </h3>
       <p style={{ 
-        color: '#e0e0e0', 
+        color: '#ffffff', 
         fontSize: '0.95rem', 
         margin: 0 
       }}>
@@ -46,7 +45,6 @@ const Education = () => {
         fontSize: '0.8rem',
         border: '1px solid rgba(0, 255, 0, 0.3)',
         padding: '2px 8px',
-        borderRadius: '4px',
         marginTop: '0.2rem',
         opacity: 0.8
       }}>

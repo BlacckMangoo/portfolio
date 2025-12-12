@@ -12,7 +12,7 @@ h* {
   --text-color: #ffffff;
   --section-spacing: 6rem;
   --container-width: 1200px;
-  --standard-radius: 8px;
+  --standard-radius: 0px;
 }
 
 body {
@@ -195,7 +195,7 @@ body {
 
 .taglines {
   font-size: clamp(1rem, 2vw, 1.5rem);
-  color: #cccccc;
+  color: #ffffff;
   margin-top: 1.5rem;
 }
 
@@ -233,7 +233,7 @@ body {
   background-color: #000;
   color: var(--primary-color);
   border: 2px solid var(--primary-color);
-  border-radius: 50%;
+  border-radius: 0;
   width: 50px;
   height: 50px;
   display: flex;
@@ -321,7 +321,7 @@ body {
 .project-content p {
   margin-bottom: 1.5rem;
   line-height: 1.6;
-  color: #cccccc;
+  color: #ffffff;
 }
 
 .project-video {

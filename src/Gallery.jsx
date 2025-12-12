@@ -27,7 +27,7 @@ const ArtGallery = () => {
   return (
     <div className="art-gallery-container">
       <div className="art-gallery">
-        {images.map((img, index) => (
+        {images.map((img) => (
           <motion.div
             key={img.path}
             className="art-gallery-item"
@@ -47,7 +47,7 @@ const ArtGallery = () => {
               src={img.src}
               alt={img.alt}
               className="artwork-image"
-              style={{ width: "100%", height: "auto", borderRadius: "8px" }}
+              style={{ width: "100%", height: "auto" }}
               containerStyle={{ width: "100%", height: "auto", position: "relative" }}
             />
           </motion.div>

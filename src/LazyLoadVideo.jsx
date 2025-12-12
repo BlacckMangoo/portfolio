@@ -6,7 +6,6 @@ const LazyLoadVideo = ({ src, className = "", poster = null }) => {
   const [isLoading, setIsLoading] = useState(true);
   // Since the component is only mounted when needed (in Project.jsx), 
   // we start loading immediately for "instant" feel.
-  const [shouldLoad, setShouldLoad] = useState(true);
   const [error, setError] = useState(false);
   const videoRef = useRef(null);
   const observerRef = useRef(null);
@@ -92,7 +91,6 @@ const LazyLoadVideo = ({ src, className = "", poster = null }) => {
             transform: 'translate(-50%, -50%)',
             width: "60px",
             height: "60px",
-            borderRadius: "50%",
             border: "4px solid rgba(0, 255, 0, 0.1)",
             borderTopColor: "#00ff00",
             zIndex: 2
