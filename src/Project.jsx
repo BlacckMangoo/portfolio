@@ -33,51 +33,48 @@ const Project = ({ title, description, videoSrc, imagesrc, icons, link, linkText
                     <p>{description}</p>
                 </motion.div>
 
-                <AnimatePresence>
-                    {isExpanded && (
-                        <motion.div
-                            initial={{ height: 0, opacity: 0 }}
-                            animate={{ height: 'auto', opacity: 1 }}
-                            exit={{ height: 0, opacity: 0 }}
-                            transition={{ duration: 0.4, ease: "easeInOut" }}
-                            style={{ overflow: 'hidden', width: '100%' }}
-                        >
-                            {link && (
-                                <motion.a
-                                    href={link}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="play-button"
-                                    whileHover={{ scale: 1.05 }}
-                                    whileTap={{ scale: 0.95 }}
-                                    style={{ marginTop: '1rem', display: 'inline-block' }}
-                                >
-                                    {linkText || "View Project"}
-                                </motion.a>
-                            )}
+                <motion.div
+                    initial={false}
+                    animate={{ height: isExpanded ? 'auto' : 0, opacity: isExpanded ? 1 : 0 }}
+                    transition={{ duration: 0.4, ease: "easeInOut" }}
+                    style={{ overflow: 'hidden', width: '100%' }}
+                >
+                    <div style={{ visibility: isExpanded ? 'visible' : 'hidden' }}>
+                        {link && (
+                            <motion.a
+                                href={link}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="play-button"
+                                whileHover={{ scale: 1.05 }}
+                                whileTap={{ scale: 0.95 }}
+                                style={{ marginTop: '1rem', display: 'inline-block' }}
+                            >
+                                {linkText || "View Project"}
+                            </motion.a>
+                        )}
 
-                            {videoSrc && (
-                                <div className="project-video" style={{ marginTop: '1.5rem' }}>
-                                    <LazyLoadVideo src={videoSrc} />
-                                </div>
-                            )}
+                        {videoSrc && (
+                            <div className="project-video" style={{ marginTop: '1.5rem' }}>
+                                <LazyLoadVideo src={videoSrc} />
+                            </div>
+                        )}
 
-                            {imagesrc && (
-                                <div style={{ marginTop: '1.5rem', width: '100%', display: 'flex', justifyContent: 'center' }}>
-                                    <div className="project-image">
-                                        <img src={imagesrc} alt={title} />
-                                    </div>
+                        {imagesrc && (
+                            <div style={{ marginTop: '1.5rem', width: '100%', display: 'flex', justifyContent: 'center' }}>
+                                <div className="project-image">
+                                    <img src={imagesrc} alt={title} />
                                 </div>
-                            )}
+                            </div>
+                        )}
 
-                            {icons && (
-                                <div style={{ marginTop: '1.5rem', width: '100%', display: 'flex', justifyContent: 'center' }}>
-                                    <IconTray iconlist={icons} />
-                                </div>
-                            )}
-                        </motion.div>
-                    )}
-                </AnimatePresence>
+                        {icons && (
+                            <div style={{ marginTop: '1.5rem', width: '100%', display: 'flex', justifyContent: 'center' }}>
+                                <IconTray iconlist={icons} />
+                            </div>
+                        )}
+                    </div>
+                </motion.div>
             </div>
         </motion.div>
     );
