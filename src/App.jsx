@@ -11,6 +11,7 @@ import Project from './Project.jsx';
 import Courses from './Courses.jsx';
 import ArtGallery from './Gallery.jsx';
 import Education from './Education.jsx';
+import CRTOverlay from './CRTOverlay.jsx';
 
 // Import Videos
 import AccordVideo from './trailer.mp4';
@@ -27,6 +28,7 @@ const App = () => {
 
   return (
     <div className="app-container">
+      <CRTOverlay />
       <MatrixBackground />
 
       {/* Content Container */}
@@ -125,7 +127,7 @@ const App = () => {
               />
               <Project
                 title=" Basic Raytracer "
-                description="Implemented a basic raytracer is cpp,SDL following the book 'Ray Tracing in One Weekend' by Peter Shirley."
+                description="Implemented a basic raytracer in C++,SDL2 by  following the book 'Ray Tracing in One Weekend' by Peter Shirley."
                 imagesrc={rtiwImage}
                 icons={iconsOnlyNands}
                 link="https://github.com/BlacckMangoo/RaytracingInOneWeekendSDL"
@@ -151,7 +153,7 @@ const App = () => {
               transition={{ duration: 1 }}
             >
               <strong>
-                 Courses I've Taken
+                 Courses I have Taken
               </strong>
             </motion.h1>
             <Courses />

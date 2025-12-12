@@ -4,36 +4,42 @@ import { motion } from "framer-motion";
 
 const LazyLoadVideo = ({ src, className = "", poster = null }) => {
   const [isLoading, setIsLoading] = useState(true);
-  const [shouldLoad, setShouldLoad] = useState(false);
+  // Since the component is only mounted when needed (in Project.jsx), 
+  // we start loading immediately for "instant" feel.
+  const [shouldLoad, setShouldLoad] = useState(true);
   const [error, setError] = useState(false);
   const videoRef = useRef(null);
   const observerRef = useRef(null);
+
+  // Helper to determine MIME type
+  const getVideoType = (filename) => {
+    if (filename.endsWith('.webm')) return 'video/webm';
+    if (filename.endsWith('.ogg')) return 'video/ogg';
+    return 'video/mp4';
+  };
   
-  // Intersection Observer for lazy loading and auto play/pause
+  // Intersection Observer for auto play/pause ONLY
   useEffect(() => {
     const options = {
       root: null,
-      rootMargin: '100px', // Start loading 100px before viewport
+      rootMargin: '50px', 
       threshold: 0.1
     };
 
     observerRef.current = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
-          // Load video when close to viewport
-          setShouldLoad(true);
-          
           // Auto-play when in viewport
           if (videoRef.current && videoRef.current.paused) {
             const playPromise = videoRef.current.play();
             if (playPromise !== undefined) {
               playPromise.catch(() => {
-                // Auto-play was prevented, user interaction needed
+                // Auto-play was prevented
               });
             }
           }
         } else {
-          // Pause when out of viewport to save resources
+          // Pause when out of viewport
           if (videoRef.current && !videoRef.current.paused) {
             videoRef.current.pause();
           }
@@ -113,7 +119,7 @@ const LazyLoadVideo = ({ src, className = "", poster = null }) => {
         muted
         loop
         playsInline
-        preload={shouldLoad ? "metadata" : "none"}
+        preload="auto"
         poster={poster}
         className={className}
         onCanPlay={handleVideoLoad}
@@ -127,7 +133,7 @@ const LazyLoadVideo = ({ src, className = "", poster = null }) => {
           objectFit: 'cover'
         }}
       >
-        {shouldLoad && <source src={src} type="video/mp4" />}
+        <source src={src} type={getVideoType(src)} />
         Your browser does not support the video tag.
       </video>
     </div>

@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from 'react';
+import  { useRef, useEffect } from 'react';
 
 const MatrixBackground = () => {
   const canvasRef = useRef(null);
@@ -57,11 +57,17 @@ const MatrixBackground = () => {
       time += 0.005; // Increment time for noise animation
 
       // Fade effect
-      ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+      // Use semi-transparent black to create trails
+      ctx.fillStyle = 'rgba(0, 0, 0, 0.1)';
       ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-      ctx.fillStyle = '#0F0';
+      // Bright green text
+      ctx.fillStyle = 'rgba(0, 255, 0, 0.26)';
       ctx.font = `${fontSize}px monospace`;
+      
+      // Add Bloom Effect
+      ctx.shadowBlur = 10;
+      ctx.shadowColor = 'rgba(20, 20, 20, 1)';
 
       for (let i = 0; i < drops.length; i++) {
         const char = charArray[Math.floor(Math.random() * charArray.length)];
@@ -90,7 +96,7 @@ const MatrixBackground = () => {
 
         // Apply FBM to opacity for "natural" shimmering
         const noiseVal = fbm(i * 0.1, time);
-        ctx.globalAlpha = 0.3 + noiseVal * 0.7; // Vary opacity between 0.3 and 1.0
+        ctx.globalAlpha = 0.6 + noiseVal * 0.4; // Vary opacity between 0.6 and 1.0
         ctx.fillText(char, drawX, drawY);
         ctx.globalAlpha = 1.0; // Reset
 
@@ -127,7 +133,7 @@ const MatrixBackground = () => {
         width: '100%',
         height: '100%',
         zIndex: 0,
-        opacity: 0.3,
+        opacity: 1.0,
         pointerEvents: 'none' // Allow clicks to pass through
       }}
     />
