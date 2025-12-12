@@ -25,39 +25,38 @@
 }
 
 .art-gallery {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 20px;
-  justify-content: center;
+  /* Masonry via CSS columns */
+  column-count: 1;
+  column-gap: 30px;
   padding: 20px;
   backdrop-filter: blur(4px);
   background: rgba(0, 0, 0, 0.2);
   border-radius: 10px;
-  overflow-y: auto;
   height: auto;
-  min-height: 400px;
   width: 100%;
   max-width: 1800px;
   margin: 0 auto 40px;
-  -ms-overflow-style: none; /* IE and Edge */
-  scrollbar-width: none; /* Firefox */
+}
+
+.art-gallery-item {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  margin: 0 0 30px;
+  break-inside: avoid;
+  -webkit-column-break-inside: avoid;
+  -moz-column-break-inside: avoid;
 }
 
 .image-container {
   position: relative;
-  flex: 1;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  overflow: hidden;
+  width: 100%;
+  overflow: visible;
   border-radius: 8px;
-  box-shadow: 0 4px 15px rgba(0, 255, 0, 0.3);
-  transition: all 0.4s ease;
 }
 
 .image-container:hover {
   transform: translateY(-5px);
-  box-shadow: 0 8px 25px rgba(0, 255, 0, 0.5);
 }
 
 .art-gallery::-webkit-scrollbar {
@@ -66,8 +65,8 @@
 
 .art-image {
   width: 100%;
-  height: 100%;
-  object-fit: cover;
+  height: auto;
+  object-fit: contain; /* safety if applied */
   display: block;
   transition: transform 0.5s ease;
 }
@@ -76,49 +75,21 @@
   transform: scale(1.05);
 }
 
-/* Responsive grid adjustments */
+/* Responsive column adjustments */
 @media (min-width: 576px) {
-  .art-gallery {
-    grid-template-columns: repeat(1, minmax(400px, 1fr));
-    padding: 25px;
-    gap: 30px;
-  }
+  .art-gallery { column-count: 1; column-gap: 30px; padding: 25px; }
 }
-
 @media (min-width: 768px) {
-  .art-gallery {
-    grid-template-columns: repeat(2, minmax(350px, 1fr));
-    padding: 25px;
-    gap: 30px;
-  }
+  .art-gallery { column-count: 2; column-gap: 30px; padding: 25px; }
 }
-
 @media (min-width: 1200px) {
-  .art-gallery {
-    grid-template-columns: repeat(2, minmax(400px, 1fr));
-    padding: 30px;
-    gap: 35px;
-  }
+  .art-gallery { column-count: 3; column-gap: 35px; padding: 30px; }
 }
-
 @media (min-width: 1600px) {
-  .art-gallery {
-    grid-template-columns: repeat(3, minmax(450px, 1fr));
-    gap: 40px;
-    padding: 35px;
-  }
+  .art-gallery { column-count: 4; column-gap: 40px; padding: 35px; }
 }
 
-/* Special layout for featured artwork */
-.art-gallery > div:nth-child(3n+1) {
-  grid-column: span 1;
-}
-
-@media (min-width: 1200px) {
-  .art-gallery > div:first-child {
-    grid-column: span 2;
-  }
-}
+/* Grid-specific layout rules removed for masonry columns */
 
 /* Center images when they're alone in a row */
 @media (min-width: 576px) and (max-width: 767px) {
@@ -131,25 +102,7 @@
   }
 }
 
-/* Handle single item in last row */
-.art-gallery > div:last-child:nth-child(odd) {
-  grid-column: 1 / -1;
-  justify-self: center;
-  max-width: 600px;
-}
-
-/* Make sure only child is centered properly */
-.art-gallery > div:only-child {
-  grid-column: 1 / -1;
-  justify-self: center;
-  max-width: 600px;
-}
-
-/* Make sure wide images that span columns are centered */
-.art-gallery > div[style*="gridColumn: span 2"] {
-  justify-self: center;
-  max-width: 900px;
-}
+/* Grid centering rules removed (not applicable in columns layout) */
 
 /* Mobile adjustments */
 @media (max-width: 768px) {
@@ -176,17 +129,4 @@
   z-index: 1;
 }
 
-/* Add hover effects */
-.image-container::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(to bottom, rgba(0,255,0,0) 80%, rgba(0,255,0,0.1));
-  opacity: 0;
-  transition: opacity 0.3s ease;
-  pointer-events: none;
-}
-
-.image-container:hover::after {
-  opacity: 1;
-}
+/* Hover effects removed */

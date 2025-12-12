@@ -1,47 +1,91 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useCallback, useMemo } from 'react';
+import PropTypes from 'prop-types';
 import { motion } from "framer-motion";
 
-const LazyLoadImage = ({ src, alt, className = "", style = {} }) => {
+// LazyLoadImage component to optimize image loading
+const LazyLoadImage = ({ src, alt, className = "", style = {}, priority = false, fit = "contain" }) => {
   const [isLoaded, setIsLoaded] = useState(false);
-  const [isInView, setIsInView] = useState(false);
+  const [isInView, setIsInView] = useState(priority); // Priority images load immediately
+  const [error, setError] = useState(false);
   const imgRef = useRef(null);
+  const observerRef = useRef(null);
   
   // Set up Intersection Observer to only load when in viewport
   useEffect(() => {
-    const observer = new IntersectionObserver((entries) => {
-      if (entries[0].isIntersecting) {
-        setIsInView(true);
-        observer.disconnect();
-      }
-    }, { rootMargin: '200px' }); // Start loading 200px before it comes into view
+    // Skip observer if priority (above fold images)
+    if (priority) return;
+
+    const options = {
+      root: null,
+      rootMargin: '150px', // Start loading 150px before viewport
+      threshold: 0.01 // Trigger as soon as 1% is visible
+    };
+
+    observerRef.current = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting && !isInView) {
+          setIsInView(true);
+          // Disconnect observer after loading to save memory
+          if (observerRef.current) {
+            observerRef.current.disconnect();
+          }
+        }
+      });
+    }, options);
     
     if (imgRef.current) {
-      observer.observe(imgRef.current);
+      observerRef.current.observe(imgRef.current);
     }
     
-    return () => observer.disconnect();
-  }, []);
+    return () => {
+      if (observerRef.current) {
+        observerRef.current.disconnect();
+      }
+    };
+  }, [priority, isInView]);
   
   // Handle image load complete
-  const handleLoad = () => {
+  const handleLoad = useCallback(() => {
     setIsLoaded(true);
-  };
+    setError(false);
+  }, []);
+
+  // Handle image load error
+  const handleError = useCallback(() => {
+    setIsLoaded(true);
+    setError(true);
+    console.error(`Failed to load image: ${src}`);
+  }, [src]);
+
+  // Memoize container styles to prevent unnecessary re-renders
+  const containerStyle = useMemo(() => ({
+    position: 'relative',
+    overflow: 'hidden',
+    width: '100%',
+    height: 'auto',
+    backgroundColor: 'rgba(0, 0, 0, 0.1)',
+    ...style
+  }), [style]);
+
+  // Memoize image styles
+  const imageStyle = useMemo(() => ({
+    opacity: isLoaded && !error ? 1 : 0,
+    transition: 'opacity 0.5s ease',
+    width: '100%',
+    height: 'auto',
+    objectFit: fit,
+    zIndex: 2,
+    position: 'relative'
+  }), [isLoaded, error, fit]);
 
   return (
     <div 
       ref={imgRef}
       className="lazy-image-container"
-      style={{ 
-        position: 'relative',
-        overflow: 'hidden',
-        width: '100%',
-        height: '100%',
-        backgroundColor: 'rgba(0, 0, 0, 0.1)',
-        ...style
-      }}
+      style={containerStyle}
     >
       {/* Loading placeholder/skeleton */}
-      {!isLoaded && (
+      {!isLoaded && !error && (
         <motion.div 
           className="image-placeholder"
           initial={{ opacity: 0.6 }}
@@ -69,28 +113,47 @@ const LazyLoadImage = ({ src, alt, className = "", style = {} }) => {
         />
       )}
       
-      {/* Only render image when scrolled into view */}
-      {isInView && (
+      {/* Error state */}
+      {error && (
+        <div style={{
+          position: 'absolute',
+          top: '50%',
+          left: '50%',
+          transform: 'translate(-50%, -50%)',
+          color: '#00ff00',
+          textAlign: 'center',
+          fontSize: '0.9rem',
+          zIndex: 2
+        }}>
+          Image unavailable
+        </div>
+      )}
+      
+      {/* Only render image when scrolled into view or priority */}
+      {isInView && !error && (
         <img
           src={src}
           alt={alt}
           className={`lazy-image ${className}`}
           onLoad={handleLoad}
-          style={{ 
-            opacity: isLoaded ? 1 : 0,
-            transition: 'opacity 0.5s ease',
-            width: '100%',
-            height: '100%',
-            objectFit: 'cover',
-            zIndex: 2,
-            position: 'relative'
-          }}
-          loading="lazy"
+          onError={handleError}
+          style={imageStyle}
+          loading={priority ? "eager" : "lazy"}
           decoding="async"
+          fetchPriority={priority ? "high" : "auto"}
         />
       )}
     </div>
   );
 };
 
-export default LazyLoadImage;
+LazyLoadImage.propTypes = {
+  src: PropTypes.string.isRequired,
+  alt: PropTypes.string.isRequired,
+  className: PropTypes.string,
+  style: PropTypes.object,
+  priority: PropTypes.bool,
+  fit: PropTypes.oneOf(["contain", "cover", "fill", "none", "scale-down"]) 
+};
+
+export default React.memo(LazyLoadImage);
