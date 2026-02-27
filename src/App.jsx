@@ -10,7 +10,6 @@ import Project from './Project.jsx';
 import Courses from './Courses.jsx';
 import ArtGallery from './Gallery.jsx';
 import Education from './Education.jsx';
-import CRTOverlay from './CRTOverlay.jsx';
 
 // Import Videos
 import AccordVideo from './trailer.mp4';
@@ -29,7 +28,6 @@ const App = () => {
 
   return (
     <div className="app-container">
-      <CRTOverlay />
 
       {/* Content Container */}
       <div style={{ position: 'relative', zIndex: 1, width: '100%' }}>
