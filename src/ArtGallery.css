@@ -107,18 +107,29 @@
 /* Mobile adjustments */
 @media (max-width: 768px) {
   .art-gallery-container {
-    gap: 20px;
-    padding: 15px;
+    gap: 15px;
+    padding: 10px;
+    margin-bottom: 30px;
+  }
+
+  .art-gallery {
+    padding: 10px;
+    column-gap: 15px;
+    margin-bottom: 20px;
   }
   
   .art-gallery-row {
     flex-direction: column;
-    gap: 20px;
+    gap: 15px;
   }
   
+  .art-gallery-item {
+    margin-bottom: 15px;
+  }
+
   .image-container {
     width: 100%;
-    max-width: 600px;
+    max-width: 100%;
     margin-left: auto !important;
     margin-right: auto !important;
   }

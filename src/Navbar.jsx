@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import './App.css';
 import SocialIcons from './Icon';
 
@@ -13,67 +13,78 @@ const navItems = [
 
 const Navbar = () => {
   const [activeSection, setActiveSection] = useState('');
+  const [menuOpen, setMenuOpen] = useState(false);
+  const menuRef = useRef(null);
 
   const scrollToSection = (sectionId) => {
     const element = document.getElementById(sectionId);
     if (element) {
-      const offset = 80; // Height of navbar approx
+      const offset = 60;
       const elementPosition = element.getBoundingClientRect().top;
       const offsetPosition = elementPosition + window.pageYOffset - offset;
-      
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: "smooth"
-      });
+      window.scrollTo({ top: offsetPosition, behavior: "smooth" });
     }
+    setMenuOpen(false);
   };
 
   useEffect(() => {
     const handleScroll = () => {
-      const scrollPosition = window.scrollY + window.innerHeight / 3; // Trigger at 1/3 down the screen
-
-      // Find the current section
+      const scrollPosition = window.scrollY + window.innerHeight / 3;
       let current = '';
       for (const item of navItems) {
         const element = document.getElementById(item.id);
-        if (element) {
-          // Check if we have scrolled past the top of this section
-          if (element.offsetTop <= scrollPosition) {
-            current = item.id;
-          }
+        if (element && element.offsetTop <= scrollPosition) {
+          current = item.id;
         }
       }
       setActiveSection(current);
     };
-
     window.addEventListener('scroll', handleScroll);
-    handleScroll(); // Check on mount
+    handleScroll();
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Close menu when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (e) => {
+      if (menuRef.current && !menuRef.current.contains(e.target)) {
+        setMenuOpen(false);
+      }
+    };
+    if (menuOpen) document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, [menuOpen]);
+
   return (
-    <nav className="navbar">
-      <div className="nav-scroll-container">
-        {navItems.map((item, index) => (
-          <React.Fragment key={item.id}>
-            <button
-              className={`nav-button ${activeSection === item.id ? 'active' : ''}`}
-              onClick={() => scrollToSection(item.id)}
-            >
-              {item.label}
-            </button>
-            {index < navItems.length - 1 && (
-              <span className={`nav-arrow ${
-                navItems.findIndex(i => i.id === activeSection) > index ? 'active' : ''
-              }`}>
-                →
-              </span>
-            )}
-          </React.Fragment>
+    <nav className="navbar" ref={menuRef}>
+      <div className="nav-brand">SG</div>
+
+      <button
+        className={`hamburger ${menuOpen ? 'open' : ''}`}
+        onClick={() => setMenuOpen(!menuOpen)}
+        aria-label="Toggle menu"
+      >
+        <span /><span /><span />
+      </button>
+
+      <div className={`nav-links ${menuOpen ? 'show' : ''}`}>
+        {navItems.map((item) => (
+          <button
+            key={item.id}
+            className={`nav-button ${activeSection === item.id ? 'active' : ''}`}
+            onClick={() => scrollToSection(item.id)}
+          >
+            {item.label}
+          </button>
         ))}
+        <div className="nav-socials-mobile">
+          <SocialIcons />
+        </div>
       </div>
 
-      <SocialIcons />
+      <div className="nav-socials-desktop">
+        <SocialIcons />
+      </div>
     </nav>
   );
 };

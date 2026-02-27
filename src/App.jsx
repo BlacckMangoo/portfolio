@@ -4,7 +4,6 @@ import './App.css';
 
 
 import Navbar from './Navbar.jsx';
-import Socials from './Icon.jsx';
 import MatrixBackground from './MatrixBackground.jsx';
 import BlogCardsList from './Blog.jsx';
 import Project from './Project.jsx';
@@ -33,7 +32,6 @@ const App = () => {
 
       {/* Content Container */}
       <div style={{ position: 'relative', zIndex: 1, width: '100%' }}>
-        <Socials />
         <Navbar />
 
         {/* Main Content */}
@@ -72,8 +70,8 @@ const App = () => {
             transition={{ duration: 1, ease: "easeInOut" }}
             style={{ 
               borderColor: "var(--primary-color)",
-              marginTop: "30vh",
-              marginBottom: "4rem"
+              marginTop: "2rem",
+              marginBottom: "2rem"
             }}
             opacity={0.1}
           />
