@@ -5,7 +5,6 @@ import './App.css';
 
 import Navbar from './Navbar.jsx';
 import SocialIcons from './Icon.jsx';
-import MatrixBackground from './MatrixBackground.jsx';
 import BlogCardsList from './Blog.jsx';
 import Project from './Project.jsx';
 import Courses from './Courses.jsx';
@@ -18,7 +17,7 @@ import AccordVideo from './trailer.mp4';
 import SierpinskiVideo from './sierpinski.mp4';
 import rtiwImage from './rtiow.webp';
 import RemRebootVideo from './remreboot.webm'
-import pathtracerImage from './image.png';
+import pathtracerImage from '../image.png';
 const App = () => {
  
 
@@ -30,7 +29,6 @@ const App = () => {
   return (
     <div className="app-container">
       <CRTOverlay />
-      <MatrixBackground />
 
       {/* Content Container */}
       <div style={{ position: 'relative', zIndex: 1, width: '100%' }}>
