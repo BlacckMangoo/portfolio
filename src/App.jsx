@@ -128,7 +128,7 @@ const App = () => {
               />
               <Project
                 title=" Basic Pathtracer "
-                description="Implemented a basic pathtracer in C++ without any external libraries , implemented Bounding Colume Hierierchy for spatial acceleration , Ray Triangle and Ray Sphere Intersection ,Custom Math Libriary for vector operations and matrix multiplications ."
+                description="Implemented a basic pathtracer in C++ without any external libraries , implemented Bounding Volume Hierierchy for spatial acceleration , Ray Triangle and Ray Sphere Intersection ,Custom Math Libriary for vector operations and matrix multiplications ."
                 imagesrc={pathtracerImage}
                 icons={iconsOnlyNands}
                 link="https://github.com/BlacckMangoo/RaytracingInOneWeekendSDL"
