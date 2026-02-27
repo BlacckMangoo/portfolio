@@ -18,6 +18,7 @@ import SierpinskiVideo from './sierpinski.mp4';
 import rtiwImage from './rtiow.webp';
 import RemRebootVideo from './remreboot.webm'
 import pathtracerImage from '../image.png';
+import xengineImage from '../xengine.jpg';
 const App = () => {
  
 
@@ -131,15 +132,15 @@ const App = () => {
                 description="Implemented a basic pathtracer in C++ without any external libraries , implemented Bounding Volume Hierierchy for spatial acceleration , Ray Triangle and Ray Sphere Intersection ,Custom Math Libriary for vector operations and matrix multiplications ."
                 imagesrc={pathtracerImage}
                 icons={iconsOnlyNands}
-                link="https://github.com/BlacckMangoo/RaytracingInOneWeekendSDL"
+                link="https://github.com/BlacckMangoo/Pathtracer"
                 linkText="star on github"
               />
               <Project
-              title=" Remnant Reboot"
-              videoSrc={RemRebootVideo}
-              description = " A 2d top down shooter game made in unity in 3d days for a game jam. Collect Resources and rebuild the fallen city of remnant , in a team of 5 people  "
-              link="https://satvikkgupta.itch.io/remnant-reboot"
-              linkText="Play on itch.io"
+              title="X Engine"
+              imagesrc={xengineImage}
+              description = " A Render Engine built from scratch in C++ using OpenGL and GLFW,implemented a Scene Graph ,Physically based Rendering , Edittable materials and transforms  "
+              link="https://github.com/BlacckMangoo/opengl3dRenderer"
+              linkText="View on GitHub"
               icons={iconsAccord}
               />
             </div>
