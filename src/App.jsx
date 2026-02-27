@@ -4,6 +4,7 @@ import './App.css';
 
 
 import Navbar from './Navbar.jsx';
+import SocialIcons from './Icon.jsx';
 import MatrixBackground from './MatrixBackground.jsx';
 import BlogCardsList from './Blog.jsx';
 import Project from './Project.jsx';
@@ -33,6 +34,9 @@ const App = () => {
       {/* Content Container */}
       <div style={{ position: 'relative', zIndex: 1, width: '100%' }}>
         <Navbar />
+        <div className="mobile-social-bar">
+          <SocialIcons />
+        </div>
 
         {/* Main Content */}
         <div className="main-content">

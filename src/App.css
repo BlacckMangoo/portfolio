@@ -575,6 +575,11 @@ body {
   opacity: 0.15;
 }
 
+/* Mobile-only social bar (hidden on desktop) */
+.mobile-social-bar {
+  display: none;
+}
+
 /* ========================
    MOBILE  (≤ 768px)
    ======================== */
@@ -583,45 +588,42 @@ body {
     --section-spacing: 2.5rem;
   }
 
-  /* Navbar mobile */
+  /* Hide the entire navbar on mobile */
   .navbar {
-    padding: 0.5rem 1rem;
-    flex-wrap: wrap;
-  }
-
-  .hamburger {
-    display: flex;
-  }
-
-  .nav-links {
-    display: none;
-    flex-direction: column;
-    width: 100%;
-    background: rgba(0, 0, 0, 0.97);
-    border-top: 1px solid rgba(0, 255, 0, 0.15);
-    padding: 0.5rem 0;
-    gap: 0;
-  }
-  .nav-links.show {
-    display: flex;
-  }
-
-  .nav-button {
-    width: 100%;
-    text-align: left;
-    padding: 0.6rem 1rem;
-    font-size: 0.8rem;
-    border-bottom: 1px solid rgba(255,255,255,0.04);
-  }
-
-  .nav-socials-desktop {
     display: none;
   }
-  .nav-socials-mobile {
+
+  /* Show floating social icons bar */
+  .mobile-social-bar {
     display: flex;
     justify-content: center;
-    padding: 0.6rem 0 0.2rem;
-    border-top: 1px solid rgba(0, 255, 0, 0.1);
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    padding: 0.6rem 1rem;
+    background: rgba(0, 0, 0, 0.92);
+    border-top: 1px solid rgba(0, 255, 0, 0.2);
+    backdrop-filter: blur(10px);
+  }
+  .mobile-social-bar .social-icons-container {
+    position: static;
+    display: flex;
+    flex-direction: row;
+    gap: 1.8rem;
+    background: none;
+    border: none;
+    padding: 0;
+    transform: none;
+  }
+  .mobile-social-bar .social-icon-link {
+    width: 28px;
+    height: 28px;
+  }
+  .mobile-social-bar svg {
+    width: 22px;
+    height: 22px;
   }
 
   /* Hero compact */
@@ -673,7 +675,7 @@ body {
   }
 
   .back-to-top {
-    bottom: 12px;
+    bottom: 55px;
     right: 12px;
     width: 36px;
     height: 36px;
@@ -694,12 +696,6 @@ body {
    SMALL MOBILE  (≤ 400px)
    ======================== */
 @media (max-width: 400px) {
-  .navbar {
-    padding: 0.4rem 0.6rem;
-  }
-  .nav-brand {
-    font-size: 1rem;
-  }
   .text-container h1 {
     font-size: 1.4rem;
   }
