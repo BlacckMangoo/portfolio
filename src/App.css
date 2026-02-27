@@ -283,11 +283,11 @@ body {
   justify-content: center;
 }
 
-/* Projects */
+/* Projects — 2-column grid */
 .projects-wrapper {
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.25rem;
   width: 100%;
 }
 
@@ -317,23 +317,50 @@ body {
 }
 
 /* ========================
-   PROJECT STYLES
+   PROJECT CARD STYLES
    ======================== */
 .project-container {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  gap: 0.75rem;
   width: 100%;
-  padding: 1.2rem 1rem;
-  background: rgba(255, 255, 255, 0.03);
-  border-radius: var(--standard-radius);
-  border: 1px solid rgba(0, 255, 0, 0.1);
+  padding: 0;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(0, 255, 0, 0.12);
   transition: all 0.3s ease;
+  overflow: hidden;
 }
 .project-container:hover {
-  border-color: rgba(0, 255, 0, 0.3);
-  box-shadow: 0 0 15px rgba(0, 255, 0, 0.08);
+  border-color: rgba(0, 255, 0, 0.35);
+  box-shadow: 0 0 20px rgba(0, 255, 0, 0.06);
+  transform: translateY(-2px);
+}
+
+/* Thumbnail area — always visible */
+.project-thumb {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  background: #0a0a0a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.project-thumb video,
+.project-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.project-thumb-placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(0,255,0,0.25);
+  font-size: 2.5rem;
+  font-family: "Orbitron", sans-serif;
 }
 
 .project-header {
@@ -344,35 +371,50 @@ body {
 .project-content {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  text-align: center;
+  align-items: flex-start;
+  text-align: left;
   width: 100%;
-  max-width: 100%;
+  padding: 1rem 1.1rem;
 }
 
 .project-content h1 {
   color: var(--primary-color);
-  margin-bottom: 0.75rem;
-  font-size: 1.5rem;
+  margin-bottom: 0.4rem;
+  font-size: 1.1rem;
+  letter-spacing: 0.5px;
 }
 
 .project-content p {
-  margin-bottom: 1rem;
-  line-height: 1.5;
-  color: #ffffff;
-  font-size: 0.9rem;
+  margin-bottom: 0.6rem;
+  line-height: 1.45;
+  color: #b0b0b0;
+  font-size: 0.78rem;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.project-container.expanded .project-content p {
+  -webkit-line-clamp: unset;
+  overflow: visible;
+}
+
+/* Card footer with link + icons */
+.project-card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 0 1.1rem 0.9rem;
+  gap: 0.5rem;
 }
 
 .project-video {
   width: 100%;
-  max-width: 700px;
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 0 auto;
-  border-radius: var(--standard-radius);
   overflow: hidden;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
   background: #000;
 }
 
@@ -381,54 +423,50 @@ body {
   width: 100%;
   height: auto;
   display: block;
-  margin: 0 auto;
 }
 
 .project-image {
-  max-width: 700px;
   width: 100%;
-  margin: 0 auto;
 }
 
 .project-image img {
   width: 100%;
   height: auto;
   display: block;
-  margin: 0 auto;
-  border-radius: var(--standard-radius);
 }
 
 /* Play Button */
 .play-button {
   display: inline-block;
-  padding: 0.6rem 1.5rem;
+  padding: 0.35rem 0.9rem;
   background: transparent;
-  border: 2px solid var(--primary-color);
+  border: 1px solid var(--primary-color);
   color: var(--primary-color);
   text-decoration: none;
-  font-weight: bold;
+  font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: 1px;
-  border-radius: var(--standard-radius);
+  letter-spacing: 0.5px;
   transition: all 0.3s ease;
-  margin-top: 0.75rem;
-  font-size: 0.85rem;
+  font-size: 0.65rem;
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 .play-button:hover {
   background: var(--primary-color);
   color: #000;
-  box-shadow: 0 0 12px var(--primary-glow);
+  box-shadow: 0 0 10px var(--primary-glow);
 }
 
 /* Tools Icon Tray */
 .tools-icon-tray {
   display: flex;
   flex-wrap: wrap;
-  gap: 1rem;
-  justify-content: center;
+  gap: 0.5rem;
+  justify-content: flex-start;
   align-items: center;
-  margin: 1rem 0;
-  width: 100%;
+  margin: 0;
+  flex: 1;
+  min-width: 0;
 }
 
 /* ========================
@@ -493,19 +531,19 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 10px;
+  padding: 6px;
   background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(0, 255, 0, 0.15);
-  border-radius: 10px;
+  border: 1px solid rgba(0, 255, 0, 0.12);
+  border-radius: 6px;
   cursor: pointer;
   transition: all 0.3s ease;
-  width: 50px;
-  height: 50px;
+  width: 32px;
+  height: 32px;
 }
 .tool-icon-wrapper:hover {
-  box-shadow: 0 0 12px rgba(0, 255, 0, 0.2);
-  background: rgba(255, 255, 255, 0.08);
-  transform: translateY(-3px);
+  box-shadow: 0 0 8px rgba(0, 255, 0, 0.15);
+  background: rgba(255, 255, 255, 0.06);
+  transform: translateY(-2px);
 }
 
 .tool-tooltip {
@@ -612,16 +650,21 @@ body {
   }
 
   .project-content h1 {
-    font-size: 1.15rem;
+    font-size: 0.95rem;
   }
   .project-content p {
-    font-size: 0.82rem;
+    font-size: 0.75rem;
+    -webkit-line-clamp: 2;
   }
-  .project-container {
-    padding: 0.9rem 0.75rem;
+  .project-content {
+    padding: 0.75rem 0.8rem;
+  }
+  .project-card-footer {
+    padding: 0 0.8rem 0.7rem;
   }
   .projects-wrapper {
-    gap: 1.2rem;
+    grid-template-columns: 1fr;
+    gap: 1rem;
   }
 
   .courses-grid {
@@ -638,12 +681,12 @@ body {
   }
 
   .tool-icon-wrapper {
-    width: 42px;
-    height: 42px;
-    padding: 8px;
+    width: 28px;
+    height: 28px;
+    padding: 5px;
   }
   .tools-icon-tray {
-    gap: 0.6rem;
+    gap: 0.35rem;
   }
 }
 
