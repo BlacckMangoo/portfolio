@@ -35,3 +35,10 @@
   50% { opacity: 1; }
   100% { opacity: 0.98; }
 }
+
+/* Hide CRT on mobile — too heavy and looks bad on small screens */
+@media (max-width: 768px) {
+  .crt-overlay {
+    display: none;
+  }
+}

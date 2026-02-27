@@ -2,11 +2,12 @@ import  { useRef, useEffect } from 'react';
 
 const MatrixBackground = () => {
   const canvasRef = useRef(null);
-  const mouseRef = useRef({ x: 0, y: 0 });
+  const mouseRef = useRef({ x: -1000, y: -1000 });
 
   useEffect(() => {
     const canvas = canvasRef.current;
     const ctx = canvas.getContext('2d');
+    const isMobile = window.innerWidth <= 768;
 
     const resize = () => {
       canvas.width = window.innerWidth;
@@ -18,106 +19,93 @@ const MatrixBackground = () => {
     };
 
     window.addEventListener('resize', resize);
-    window.addEventListener('mousemove', handleMouseMove);
+    if (!isMobile) {
+      window.addEventListener('mousemove', handleMouseMove);
+    }
     resize();
 
-    const chars = 'ABC⍾⍙⟒⍀⏁⊬⎍⟟⍜⏃⌇⎅⎎☌⊑⟊☍⌰⋉⌖☊⎐⏚⋏⋔D同学们好TU的一∑_{n=1}^{∞}(√(n²+π²)/e^(αn))∫₀^∞(sin(θ²)/(x²+1))dx+∇²∇²∇²∇²∇²∇²∇²∇²∇²∇²λ∇²φ(x)=σ(ω)是了我不人有在他VVXYZ0123456789@#$%^&*()अआइईउऊऋऍएऐऑओऔअंअःकखगघचछजझटठडढतथदधनपफबभमयरलवशषसहक्षत्रज्ञऩंःऽ';
+    // Use simpler charset, looks cleaner
+    const chars = 'アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン0123456789ABCDEF';
     const charArray = chars.split('');
-    const fontSize = 18;
+    const fontSize = isMobile ? 14 : 16;
     const columns = Math.ceil(canvas.width / fontSize);
 
-    // Store drop positions as floating point numbers for smooth movement
+    // Each drop has position + speed + brightness
     const drops = [];
     for (let i = 0; i < columns; i++) {
-      drops[i] = Math.random() * canvas.height / fontSize;
+      drops[i] = {
+        y: Math.random() * canvas.height / fontSize,
+        speed: 0.3 + Math.random() * 0.8,
+        brightness: 0.15 + Math.random() * 0.2
+      };
     }
 
-    // Simple 2D Noise Function
-    const noise = (x, y) => {
-      const n = Math.sin(x * 12.9898 + y * 78.233) * 43758.5453123;
-      return n - Math.floor(n);
-    };
-
-    // Fractal Brownian Motion
-    const fbm = (x, y) => {
-      let total = 0;
-      let amplitude = 0.5;
-      let frequency = 1.0;
-      for (let i = 0; i < 4; i++) {
-        total += noise(x * frequency, y * frequency) * amplitude;
-        amplitude *= 0.5;
-        frequency *= 2.0;
-      }
-      return total;
-    };
-
     let time = 0;
+    let animId;
 
     const draw = () => {
-      time += 0.005; // Increment time for noise animation
+      time += 0.003;
 
-      // Fade effect
-      // Use semi-transparent black to create trails
-      ctx.fillStyle = 'rgba(0, 0, 0, 0.1)';
+      // Trail fade — slightly darker for crisper trails
+      ctx.fillStyle = 'rgba(0, 0, 0, 0.08)';
       ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-      // Bright green text
-      ctx.fillStyle = 'rgba(0, 255, 0, 0.26)';
       ctx.font = `${fontSize}px monospace`;
-      
-      // Add Bloom Effect
-      ctx.shadowBlur = 10;
-      ctx.shadowColor = 'rgba(20, 20, 20, 1)';
+      ctx.shadowBlur = 0;
 
       for (let i = 0; i < drops.length; i++) {
+        const drop = drops[i];
         const char = charArray[Math.floor(Math.random() * charArray.length)];
-        
-        // Calculate position
+
         const x = i * fontSize;
-        const y = drops[i] * fontSize;
+        const y = drop.y * fontSize;
 
-        // Repulsion Distortion Logic
-        const dx = x - mouseRef.current.x;
-        const dy = y - mouseRef.current.y;
-        const distance = Math.sqrt(dx * dx + dy * dy);
-        const maxDist = 400; // Radius of effect
-
+        // Mouse repulsion (desktop only)
         let drawX = x;
         let drawY = y;
-
-        if (distance < maxDist) {
-          const angle = Math.atan2(dy, dx);
-          const force = (maxDist - distance) / maxDist;
-          const repulsion = force * force * 200; // Stronger push closer to center
-
-          drawX += Math.cos(angle) * repulsion;
-          drawY += Math.sin(angle) * repulsion;
+        if (!isMobile) {
+          const dx = x - mouseRef.current.x;
+          const dy = y - mouseRef.current.y;
+          const distance = Math.sqrt(dx * dx + dy * dy);
+          const maxDist = 200;
+          if (distance < maxDist) {
+            const angle = Math.atan2(dy, dx);
+            const force = ((maxDist - distance) / maxDist);
+            const repulsion = force * force * 120;
+            drawX += Math.cos(angle) * repulsion;
+            drawY += Math.sin(angle) * repulsion;
+          }
         }
 
-        // Apply FBM to opacity for "natural" shimmering
-        const noiseVal = fbm(i * 0.1, time);
-        ctx.globalAlpha = 0.6 + noiseVal * 0.4; // Vary opacity between 0.6 and 1.0
+        // Bright head character
+        const headAlpha = 0.9 + Math.sin(time * 2 + i) * 0.1;
+        ctx.fillStyle = `rgba(180, 255, 180, ${headAlpha})`;
+        ctx.shadowBlur = 8;
+        ctx.shadowColor = 'rgba(0, 255, 0, 0.6)';
         ctx.fillText(char, drawX, drawY);
-        ctx.globalAlpha = 1.0; // Reset
 
-        // Reset drop if it goes off screen or randomly
-        if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
-          drops[i] = 0;
+        // Trail characters (dimmer)
+        ctx.shadowBlur = 0;
+        const trailAlpha = drop.brightness * (0.7 + Math.sin(time + i * 0.3) * 0.3);
+        ctx.fillStyle = `rgba(0, 255, 0, ${trailAlpha})`;
+
+        // Reset drop
+        if (drop.y * fontSize > canvas.height && Math.random() > 0.98) {
+          drop.y = 0;
+          drop.speed = 0.3 + Math.random() * 0.8;
+          drop.brightness = 0.15 + Math.random() * 0.2;
         }
 
-        // Natural speed variation using FBM
-        // Columns near each other will have similar speeds (gusts of wind)
-        const speedNoise = fbm(i * 0.05, time * 0.5);
-        const speed = 0.5 + speedNoise * 1.5; // Speed varies between 0.5 and 2.0
-        
-        drops[i] += speed;
+        drop.y += drop.speed;
       }
+
+      animId = requestAnimationFrame(draw);
     };
 
-    const interval = setInterval(draw, 33); // ~30fps
+    animId = requestAnimationFrame(draw);
 
     return () => {
-      clearInterval(interval);
+      cancelAnimationFrame(animId);
       window.removeEventListener('resize', resize);
       window.removeEventListener('mousemove', handleMouseMove);
     };
@@ -134,7 +122,7 @@ const MatrixBackground = () => {
         height: '100%',
         zIndex: 0,
         opacity: 1.0,
-        pointerEvents: 'none' // Allow clicks to pass through
+        pointerEvents: 'none'
       }}
     />
   );
