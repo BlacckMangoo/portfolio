@@ -1,14 +1,13 @@
 .art-gallery-container {
   display: flex;
   flex-direction: column;
-  gap: 30px;
+  gap: 20px;
   width: 100%;
-  max-width: 1800px;
-  margin: 0 auto 60px;
-  padding: 20px;
-  background: rgba(0, 0, 0, 0.039);
-  backdrop-filter: blur(4px);
-  border-radius: 10px;
+  max-width: 1200px;
+  margin: 0 auto 40px;
+  padding: 15px;
+  background: transparent;
+  border-radius: 0;
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
@@ -27,36 +26,32 @@
 .art-gallery {
   /* Masonry via CSS columns */
   column-count: 1;
-  column-gap: 30px;
-  padding: 20px;
-  backdrop-filter: blur(4px);
-  background: rgba(0, 0, 0, 0.2);
-  border-radius: 10px;
+  column-gap: 16px;
+  padding: 0;
+  background: transparent;
   height: auto;
   width: 100%;
-  max-width: 1800px;
-  margin: 0 auto 40px;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 .art-gallery-item {
   position: relative;
   display: inline-block;
   width: 100%;
-  margin: 0 0 30px;
+  margin: 0 0 16px;
   break-inside: avoid;
   -webkit-column-break-inside: avoid;
   -moz-column-break-inside: avoid;
+  contain: layout style;
+  will-change: opacity;
 }
 
 .image-container {
   position: relative;
   width: 100%;
-  overflow: visible;
-  border-radius: 8px;
-}
-
-.image-container:hover {
-  transform: translateY(-5px);
+  overflow: hidden;
+  border-radius: 4px;
 }
 
 .art-gallery::-webkit-scrollbar {
@@ -66,78 +61,34 @@
 .art-image {
   width: 100%;
   height: auto;
-  object-fit: contain; /* safety if applied */
+  object-fit: contain;
   display: block;
-  transition: transform 0.5s ease;
-}
-
-.image-container:hover .art-image {
-  transform: scale(1.05);
 }
 
 /* Responsive column adjustments */
 @media (min-width: 576px) {
-  .art-gallery { column-count: 1; column-gap: 30px; padding: 25px; }
+  .art-gallery { column-count: 2; column-gap: 16px; }
 }
-@media (min-width: 768px) {
-  .art-gallery { column-count: 2; column-gap: 30px; padding: 25px; }
-}
-@media (min-width: 1200px) {
-  .art-gallery { column-count: 3; column-gap: 35px; padding: 30px; }
-}
-@media (min-width: 1600px) {
-  .art-gallery { column-count: 4; column-gap: 40px; padding: 35px; }
+@media (min-width: 1000px) {
+  .art-gallery { column-count: 3; column-gap: 16px; }
 }
 
 /* Grid-specific layout rules removed for masonry columns */
 
-/* Center images when they're alone in a row */
-@media (min-width: 576px) and (max-width: 767px) {
-  .art-gallery {
-    justify-items: center;
-  }
-  
-  .image-container {
-    max-width: 600px;
-  }
-}
-
-/* Grid centering rules removed (not applicable in columns layout) */
-
 /* Mobile adjustments */
-@media (max-width: 768px) {
+@media (max-width: 575px) {
   .art-gallery-container {
-    gap: 15px;
-    padding: 10px;
-    margin-bottom: 30px;
-  }
-
-  .art-gallery {
-    padding: 10px;
-    column-gap: 15px;
+    gap: 10px;
+    padding: 5px;
     margin-bottom: 20px;
   }
-  
-  .art-gallery-row {
-    flex-direction: column;
-    gap: 15px;
+
+  .art-gallery {
+    column-count: 1;
+    column-gap: 0;
   }
-  
+
   .art-gallery-item {
-    margin-bottom: 15px;
-  }
-
-  .image-container {
-    width: 100%;
-    max-width: 100%;
-    margin-left: auto !important;
-    margin-right: auto !important;
+    margin-bottom: 12px;
   }
 }
-
-/* Make certain featured images stand out */
-.image-container:nth-child(3n+1) {
-  z-index: 1;
-}
-
-/* Hover effects removed */

@@ -27,21 +27,14 @@ const ArtGallery = () => {
   return (
     <div className="art-gallery-container">
       <div className="art-gallery">
-        {images.map((img) => (
+        {images.map((img, i) => (
           <motion.div
             key={img.path}
             className="art-gallery-item"
-            whileHover={{
-              scale: 1.9,
-              zIndex: 999
-            }}
-            transition={{ 
-              type: "spring",
-              stiffness: 300,
-              damping: 20
-            }}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true, margin: "-30px" }}
+            transition={{ duration: 0.4, delay: (i % 6) * 0.05 }}
           > 
             <LazyLoadImage
               src={img.src}
