@@ -18,6 +18,7 @@ import AccordVideo from './trailer.mp4';
 import SierpinskiVideo from './sierpinski.mp4';
 import rtiwImage from './rtiow.webp';
 import RemRebootVideo from './remreboot.webm'
+import pathtracerImage from './image.png';
 const App = () => {
  
 
@@ -123,14 +124,14 @@ const App = () => {
               />
               <Project
                 title="Sierpinski Triangle Extended to 3D and 4D"
-                description="I started it as a simple Sierpinski triangle exercise to learn recursion and JavaScript, extended it to 3D using the chaos game algorithm. Then I thought wouldn't it be crazy if I extend it to 4 dimensions and project it onto 3D space, and got this interesting fractal."
+                description="I started it as a simple Sierpinski triangle exercise to learn recursion and JavaScript, extended it to 3D using the chaos game algorithm. Then I thought wouldn't it be crazy if I extend it to 4 dimensions and project it onto 3D space using stereographic projection, and got this interesting fractal as resut ."
                 videoSrc={SierpinskiVideo}
                 icons={iconsSierpinski}
               />
               <Project
-                title=" Basic Raytracer "
-                description="Implemented a basic raytracer in C++,SDL2 by  following the book 'Ray Tracing in One Weekend' by Peter Shirley."
-                imagesrc={rtiwImage}
+                title=" Basic Pathtracer "
+                description="Implemented a basic pathtracer in C++ without any external libraries , implemented Bounding Colume Hierierchy for spatial acceleration , Ray Triangle and Ray Sphere Intersection ,Custom Math Libriary for vector operations and matrix multiplications ."
+                imagesrc={pathtracerImage}
                 icons={iconsOnlyNands}
                 link="https://github.com/BlacckMangoo/RaytracingInOneWeekendSDL"
                 linkText="star on github"
@@ -138,7 +139,7 @@ const App = () => {
               <Project
               title=" Remnant Reboot"
               videoSrc={RemRebootVideo}
-              description = " A 2d top down shooter game made in unity in 3d days for a game jam. Collect Resources and rebuild the fallen city of remnant "
+              description = " A 2d top down shooter game made in unity in 3d days for a game jam. Collect Resources and rebuild the fallen city of remnant , in a team of 5 people  "
               link="https://satvikkgupta.itch.io/remnant-reboot"
               linkText="Play on itch.io"
               icons={iconsAccord}
